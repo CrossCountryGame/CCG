@@ -1,12 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PlayerController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\PlayerController.cs">
     <Files>
-      <File FileName="Assets\GameManager.cs" Line="7" Column="15" />
-      <File FileName="Assets\PlayerController.cs" Line="114" Column="54" />
-      <File FileName="Assets\FrontPlayerCollider.cs" Line="10" Column="4" />
-      <File FileName="..\..\TempleRun-Unity-master\Assets\MainCamera.cs" Line="11" Column="5" />
-      <File FileName="Assets\CameraController.cs" Line="23" Column="3" />
+      <File FileName="Assets\Script\PlayerController.cs" Line="231" Column="59" />
+      <File FileName="Assets\Script\Coin.cs" Line="14" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
