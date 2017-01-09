@@ -2,23 +2,31 @@
 using System.Collections;
 using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
-	
+
+
+	#region [VARIABLES]
+	[Header("Physics ambient")]
 	public float gravity = 20.0F;
 	public float defaultRunSpeed = 7.0f;
 	public float speedUpRate = 5.0f;
+	private Vector3 startpoint;
+	public float movementForce;
+	public float movementForceDevice;
+	[Header("GUI")]
 	public Text elapseTimeGUIText;
 	public Text distanceGUIText;
 	public Text pointGUIText;
+	public Text ScoreGUIText;
+	[Header("Data")]
+	int ScoreCoins;
 	int Score;
+	[Header("Character")]
 	private float runSpeed;
 	private	int runDirection;
-	private Vector3 startpoint;
 	private Rigidbody rgbody;
-	public float movementForce;
-	public float movementForceDevice;
 	string currentDirection = "Front";
 	private Vector3 moveDirection = Vector3.zero;
-
+	private bool canCurve;
 	private Animator anim;
 	//Jump
 	//public float heightToJump = 8.0f;
@@ -31,8 +39,16 @@ public class PlayerController : MonoBehaviour {
 	public float initHeight;
 	public float currentHeight;
 	float lastYPosition;
-	void Start()
-	{
+	private Vector2 touchStartPos;
+	private float lastRotateTime;
+	private bool  arrowKeyPressed;
+	#endregion
+	/// <summary>
+	// Variables of  the class.
+	/// </summary>
+	//---------------
+	#region [StartFunction]
+	void Start(){
 		controller = GetComponent<CharacterController>();
 		initHeight = gameObject.transform.position.y;
 		anim = this.GetComponent<Animator> ();
@@ -41,18 +57,24 @@ public class PlayerController : MonoBehaviour {
 		this.runSpeed = this.defaultRunSpeed;
 		rgbody = this.GetComponent<Rigidbody> ();
 	}
+	#endregion
+	/// <summary>
+	// Calling starting methods.
+	/// </summary>
+	//-------------
+	#region [UpdateFunction]
+	void Update(){
+		if (!Manager.mng.isPaused) {
+			//---------------------------Screen
+			this.processKeyInput();
+			this.processTouchInput();
+			//----------------------------Movement
+			this.move();
+			this.updateElapsedTimeLabel();
+			this.speedUp();
+			this.calcDistance ();
+		}
 
-	// Update is called once per frame
-	void Update()
-	{
-		//---------------------------Screen
-		this.processKeyInput();
-		this.processTouchInput();
-		//----------------------------Movement
-		this.move();
-		this.updateElapsedTimeLabel();
-		this.speedUp();
-		this.calcDistance ();
 		currentHeight = gameObject.transform.position.y;
 		if(currentHeight > initHeight){
 			if (currentHeight < lastYPosition) {
@@ -70,21 +92,34 @@ public class PlayerController : MonoBehaviour {
 		moveDirection.y -= gravity * Time.deltaTime;
 		controller.Move(moveDirection * Time.deltaTime);
 	}
+	#endregion
+	/// <summary>
+	// Call more functions frame by frame.
+	/// </summary>
+	//------------
+	#region [Plus Point Function]
 	public void plusPoints(int coin){
-		Score += coin;
-		pointGUIText.text = Score.ToString ();
+		ScoreCoins += coin;
+		pointGUIText.text = ScoreCoins.ToString ();
 	}
+	#endregion
+	/// <summary>
+	// increase the coins.
+	/// </summary>
+	#region [Distance Calculation Function]
 	private void calcDistance(){
 		float distance;
 		distance = Vector3.Distance (startpoint, this.transform.position);
 		float distanceMeters = (distance * (2.54f / 96)) * 10;
 		distanceGUIText.text = "Distance:" + distance.ToString ();
 	}
+	#endregion
 	// touch
-	private Vector2 touchStartPos;
 
+	// Touching Android Screen process.
 	private void processTouchInput()
 	{
+		#region [Android Rotation]
 		if (Input.touchCount > 0) {
 
 		Touch touch = Input.touches [0];
@@ -93,45 +128,28 @@ public class PlayerController : MonoBehaviour {
 			touchStartPos = touch.position;
 		} else if (phase == TouchPhase.Ended || phase == TouchPhase.Canceled) {
 				if(isFalling == false){
-					if (touch.position.x < (touchStartPos.x - 75)) {
+					if (touch.position.x < (touchStartPos.x - 75) && canCurve) {
 						runDirection -= 90;
-					} else if (touch.position.x > (touchStartPos.x + 75)){
+					} else if (touch.position.x > (touchStartPos.x + 75) && canCurve){
 						runDirection += 90;
 
 					}
 				}
 
-				if (touch.position.y > (touchStartPos.y + 85) && isFalling == false) {
+				if (touch.position.y > (touchStartPos.y + 130) && isFalling == false) {
 						Jump ();
 						isFalling = true;
 						arrowKeyPressed = true;
 
-				} else if (touch.position.y < (touchStartPos.y - 85) && isFalling == false) {
+				} else if (touch.position.y < (touchStartPos.y - 130) && isFalling == false) {
 					StartCoroutine ("DownMovement");
 
 					arrowKeyPressed = true;
 				}
 		}
 		}
-		/*case "Front":
-		Vector3 moveFront = new Vector3 (-movementForce, 0, 0);
-		controller.SimpleMove (moveFront);
-		//rgbody.AddForce (-movementForce * 100, 0, 0);
-		break;
-		case "Left":
-		Vector3 moveLeft = new Vector3 (0, 0, movementForce);
-		controller.SimpleMove (moveLeft);
-		//rgbody.AddForce (0, 0, movementForce * 100);
-		break;
-		case "Back":
-		Vector3 moveBack = new Vector3 (movementForce, 0, 0);
-		controller.SimpleMove (moveBack);
-		//rgbody.AddForce (movementForce * 100, 0, 0);
-		break;
-		case "Right":
-		Vector3 moveRight = new Vector3 (0, 0, -movementForce);
-		controller.SimpleMove (moveRight);*/
-		//rgbody.AddForce (0, 0, -movementForce * 100);
+		#endregion
+		#region [Androoid moving Device]
 		if (Input.acceleration.x < 0) {
 			switch(currentDirection){
 			case "Front":
@@ -177,24 +195,24 @@ public class PlayerController : MonoBehaviour {
 			}
 
 		}
+		#endregion
 	}
 
-	//keyborad
-	private float lastRotateTime;
-	private bool  arrowKeyPressed;
-
+	//keyborad function for debug.
+	#region [Key Inputs]
 	private void processKeyInput()
 	{
 		if (!arrowKeyPressed && Time.time - lastRotateTime > 0.1f) {
-			if (Input.GetKey(KeyCode.LeftArrow)) {
+			if (Input.GetKey(KeyCode.LeftArrow) && canCurve) {
 				
 					runDirection -= 90;  
 					lastRotateTime = Time.time;
 					arrowKeyPressed = true;
 					Debug.Log (runDirection);
+					canCurve = false;
 
 
-			} else if (Input.GetKey(KeyCode.RightArrow)) {
+			} else if (Input.GetKey(KeyCode.RightArrow)&& canCurve) {
 					
 					runDirection += 90;
 					lastRotateTime = Time.time;
@@ -272,38 +290,32 @@ public class PlayerController : MonoBehaviour {
 			arrowKeyPressed = false;
 		}
 	}
+	#endregion
 
+	// move funcition.
 	private void move()
 	{
-
-
 		Vector3 forward = transform.TransformDirection(0,0,runSpeed);
 		controller.SimpleMove (forward);
-
+		Score += 1;
+		ScoreGUIText.text = Score.ToString ();
 		this.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, runDirection, 0), 0.25f);
-
-		//Vector3 v = transform.forward * this.runSpeed;
-		//v.y = this.GetComponent<Rigidbody>().velocity.y;
-		//this.GetComponent<Rigidbody>().velocity = v;
 	}
 
+	//Increase speed mean the game is playing. little by little.
 	private void speedUp()
 	{
 		//speed up 0.1 per 10sec.
 		this.runSpeed = defaultRunSpeed + Time.time / 10.0f * this.speedUpRate;
 	}
 
+	// players juping function.
 	void Jump(){
 		lastYPosition = initHeight;
 		moveDirection.y = jumpforce;
-	
-		//rgbody.velocity = new Vector3(0,jumpforce,0);
-		//rgbody.AddForce (0,jumpforce * 120,0);
 		anim.SetBool ("landing",false);
 		anim.SetBool ("Jump",true);
 		anim.SetBool ("OnGround",false);
-
-
 	}
 	IEnumerator DownMovement(){
 		Debug.Log ("abajo");
@@ -330,24 +342,17 @@ public class PlayerController : MonoBehaviour {
 			anim.SetBool ("OnGround",false);
 
 		}
-		/*switch(collision.gameObject.tag){
-		case "Ground":
-			isFalling = false;
-			anim.SetBool ("Jump", false);
-			anim.SetBool ("landing", false);
-			anim.SetBool ("OnGround",true);
-			break;
-		case "Obstacle":
-			Death ();
-			break;
-		 
-		}*/
 
-
-
+	
 	}
 
 	void OnTriggerEnter(Collider other) {
+		if(other.tag == "Curve"){
+			canCurve = true;
+		}else{
+			canCurve = false;
+
+		}
 		switch (other.tag) {
 		case "LeftDirection":
 			currentDirection = "Left";
@@ -368,21 +373,8 @@ public class PlayerController : MonoBehaviour {
 		anim.SetBool ("Dead", true);
 		Invoke ("Reset",1.5f);
 	}
-	//void OnCollisionEnter(Collision coll){
-	//	if(){
-			
-	//	}
-	//}
+
 	void Reset (){
 		GameManager.gmanager.ResetScene ();
 	}
-	//private void checkFail() {
-	//	if (transform.position.y < -10) {
-	//		transform.position = new Vector3(0, 5, 0);
-	////		this.runSpeed = this.defaultRunSpeed;
-
-		////	GroundControl con = obj.GetComponent("GroundControl") as GroundControl;
-			//con.resetGame();
-	//	}
-	}
-
+}

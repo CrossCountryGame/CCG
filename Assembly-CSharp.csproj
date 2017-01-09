@@ -45,13 +45,40 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Manager.cs" />
+     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Effects\GamestrapEffect.cs" />
+     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Effects\GradientEffect.cs" />
+     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Effects\MirrorEffect.cs" />
+     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Effects\RadialGradientEffect.cs" />
+     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Effects\ShadowEffect.cs" />
+     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Effects\SkewEffect.cs" />
+     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Examples\Complete Project\Global\Scripts\ESceneNames.cs" />
+     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Examples\Complete Project\Global\Scripts\GSAppExampleControl.cs" />
+     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Examples\Complete Project\Global\Scripts\SceneTransitionsButton.cs" />
+     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Examples\Complete Project\Screens\Gameplay\GameplayUI.cs" />
+     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Examples\Complete Project\Screens\Levels\LevelsControl.cs" />
+     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Examples\Complete Project\Screens\Main Menu\MainMenuControl.cs" />
+     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Helper Scripts\ButtonShowHide.cs" />
+     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Helper Scripts\ToggleButtonIcon.cs" />
      <Compile Include="Assets\Script\CameraController.cs" />
      <Compile Include="Assets\Script\Coin.cs" />
      <Compile Include="Assets\Script\FrontPlayerCollider.cs" />
      <Compile Include="Assets\Script\GameManager.cs" />
      <Compile Include="Assets\Script\PlayerController.cs" />
-     <None Include="Assets\Other\Allsky\AllSkyDemoEnvironment\Specular Snow Vertex Colours.shader" />
-     <None Include="Assets\Other\Allsky\allsky_readme.txt" />
+     <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\ubuntu\UBUNTU FONT LICENCE.txt" />
+     <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Bebas\Flat-it License.txt" />
+     <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Monospace\README.txt" />
+     <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Basis33\LICENSE.txt" />
+     <None Include="Assets\Resources\Other\Allsky\AllSkyDemoEnvironment\Specular Snow Vertex Colours.shader" />
+     <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\PixelFJ8pt1\peace,...txt" />
+     <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Lato\SIL Open Font License.txt" />
+     <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\OpenSans\LICENSE.txt" />
+     <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Basis33\README.txt" />
+     <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Polaris\FontInfo.txt" />
+     <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Bigfish\FontInfo.txt" />
+     <None Include="Assets\Resources\Other\Allsky\allsky_readme.txt" />
+     <None Include="Assets\Resources\Other\Gamestrap\UI\Graphics\Flags\_readme.txt" />
+     <None Include="Assets\Resources\Other\Gamestrap\UI\Gizmos\_readme.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
