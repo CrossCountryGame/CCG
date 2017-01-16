@@ -35,6 +35,22 @@ public class PlayerController : MonoBehaviour {
 	public static PlayerController player;
 	CharacterController controller;
 
+<<<<<<< HEAD
+	[Header("Items Objects")]
+	[Header("Magnet")]
+	public GameObject MagnerAbility;//Object with the tag Magnet
+	public int MagnetDuringTime = 3; // in seconds
+	[Header ("Speed Up")]
+	public int SpeedBoost = 3;
+	public int SpeedUpDuringTime = 3; // in seconds
+	bool SpeedBoostActive= false;
+	[Header ("Coins multiplier")]
+	public int MultiplierNumber = 2;
+	public int CoinsMultiplierDuration = 3; // in seconds
+
+	//-------------------------------
+=======
+>>>>>>> origin/master
 	[Header("Debug Data")]
 	public float initHeight;
 	public float currentHeight;
@@ -97,6 +113,44 @@ public class PlayerController : MonoBehaviour {
 	// Call more functions frame by frame.
 	/// </summary>
 	//------------
+<<<<<<< HEAD
+	#region [Items]
+	public void activeMagnet(){
+		StartCoroutine ("MagnetWorking");
+	}
+	IEnumerator MagnetWorking(){
+		MagnerAbility.SetActive (true);
+		yield return new WaitForSeconds (MagnetDuringTime);
+		MagnerAbility.SetActive (false);
+	}
+	//------------------------------------
+	public void activeSpeedUp(){
+		StartCoroutine ("SpeedUpWorking");
+	}
+	IEnumerator SpeedUpWorking(){
+		SpeedBoostActive = true;
+
+		yield return new WaitForSeconds (SpeedUpDuringTime);
+
+		SpeedBoostActive = false;
+	}
+	//----------------------------------
+	public void activeCoinsMultiplier(){
+		StartCoroutine ("CoinsMultiplierWorking");
+	}
+	IEnumerator CoinsMultiplierWorking(){
+		Coin[] objects = GameObject.FindObjectsOfType<Coin>();
+		foreach(Coin coins in objects){
+			coins.CoinValue *= MultiplierNumber;
+		}
+		yield return new WaitForSeconds (SpeedUpDuringTime);
+
+		SpeedBoostActive = false;
+	}
+	#endregion
+
+=======
+>>>>>>> origin/master
 	#region [Plus Point Function]
 	public void plusPoints(int coin){
 		ScoreCoins += coin;
@@ -295,7 +349,18 @@ public class PlayerController : MonoBehaviour {
 	// move funcition.
 	private void move()
 	{
+<<<<<<< HEAD
+		Vector3 forward;
+		if (SpeedBoostActive) {
+			forward = transform.TransformDirection(0,0,runSpeed * SpeedBoost);
+
+		} else {
+			forward = transform.TransformDirection(0,0,runSpeed);
+
+		}
+=======
 		Vector3 forward = transform.TransformDirection(0,0,runSpeed);
+>>>>>>> origin/master
 		controller.SimpleMove (forward);
 		Score += 1;
 		ScoreGUIText.text = Score.ToString ();
@@ -347,6 +412,11 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
+<<<<<<< HEAD
+
+	
+=======
+>>>>>>> origin/master
 		if(other.tag == "Curve"){
 			canCurve = true;
 		}else{
@@ -366,6 +436,21 @@ public class PlayerController : MonoBehaviour {
 		case "RightDirection":
 			currentDirection = "Right";
 			break;
+<<<<<<< HEAD
+		case "MagnetItem":
+			activeMagnet ();
+			Destroy (other.gameObject);
+			break;
+		case "SpeedItem":
+			activeSpeedUp ();
+			Destroy (other.gameObject);
+			break;
+		case "CoinsItem":
+			activeCoinsMultiplier ();
+			Destroy (other.gameObject);
+			break;
+=======
+>>>>>>> origin/master
 		}
 	}
 	public void Death(){
