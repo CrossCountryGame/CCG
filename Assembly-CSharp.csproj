@@ -45,6 +45,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+     <Compile Include="Assets\CameraController.cs" />
+=======
+>>>>>>> origin/master
      <Compile Include="Assets\Manager.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Effects\GamestrapEffect.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Effects\GradientEffect.cs" />
@@ -60,7 +64,10 @@
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Examples\Complete Project\Screens\Main Menu\MainMenuControl.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Helper Scripts\ButtonShowHide.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Helper Scripts\ToggleButtonIcon.cs" />
+<<<<<<< HEAD
+=======
      <Compile Include="Assets\Script\CameraController.cs" />
+>>>>>>> origin/master
      <Compile Include="Assets\Script\Coin.cs" />
      <Compile Include="Assets\Script\FrontPlayerCollider.cs" />
      <Compile Include="Assets\Script\GameManager.cs" />
