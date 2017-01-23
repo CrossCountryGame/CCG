@@ -4,7 +4,6 @@ using System.Collections;
 public class Coin : MonoBehaviour {
 
 	public int CoinValue;
-<<<<<<< HEAD
 	GameObject Character;
 	private bool MagnetOn = false;
 	private Vector3 initPos;
@@ -15,18 +14,14 @@ public class Coin : MonoBehaviour {
 	void Start () {
 		Character = GameObject.Find ("Player");
 		initPos = transform.position;
-=======
-	// Use this for initialization
-	void Start () {
-	
->>>>>>> origin/master
 	}
+	// Use this for initialization
+	
 	void OnTriggerEnter(Collider coll){
 		if(coll.tag == "Player"){
 			PlayerController.player.plusPoints (CoinValue);
 			Destroy (gameObject);
 		}
-<<<<<<< HEAD
 		if(coll.tag == "Magnet"){
 			MagnetOn = true;
 		}
@@ -43,11 +38,7 @@ public class Coin : MonoBehaviour {
 			transform.position = Vector3.Lerp (initPos,new Vector3(Character.transform.position.x,initPos.y,Character.transform.position.z),perc);
 
 		}
-=======
 	}
-	// Update is called once per frame
-	void Update () {
 	
->>>>>>> origin/master
-	}
 }
+

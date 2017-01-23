@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Resources/Other/Allsky/Cartoon/Cartoon Airbrush FluffyBlueSky/Cartoon_FluffyBlueSky.unity
+- path: Assets/Scenes/Test/PlayerMovementSystem.unity
   isLoaded: 1
   isActive: 1

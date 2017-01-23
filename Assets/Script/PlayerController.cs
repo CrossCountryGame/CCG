@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour {
 	public float movementForce;
 	public float movementForceDevice;
 	[Header("GUI")]
-	public Text elapseTimeGUIText;
-	public Text distanceGUIText;
+	//public Text elapseTimeGUIText;
+	//public Text distanceGUIText;
 	public Text pointGUIText;
 	public Text ScoreGUIText;
 	[Header("Data")]
@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour {
 	public static PlayerController player;
 	CharacterController controller;
 
-<<<<<<< HEAD
 	[Header("Items Objects")]
 	[Header("Magnet")]
 	public GameObject MagnerAbility;//Object with the tag Magnet
@@ -49,8 +48,6 @@ public class PlayerController : MonoBehaviour {
 	public int CoinsMultiplierDuration = 3; // in seconds
 
 	//-------------------------------
-=======
->>>>>>> origin/master
 	[Header("Debug Data")]
 	public float initHeight;
 	public float currentHeight;
@@ -113,7 +110,6 @@ public class PlayerController : MonoBehaviour {
 	// Call more functions frame by frame.
 	/// </summary>
 	//------------
-<<<<<<< HEAD
 	#region [Items]
 	public void activeMagnet(){
 		StartCoroutine ("MagnetWorking");
@@ -149,8 +145,6 @@ public class PlayerController : MonoBehaviour {
 	}
 	#endregion
 
-=======
->>>>>>> origin/master
 	#region [Plus Point Function]
 	public void plusPoints(int coin){
 		ScoreCoins += coin;
@@ -165,7 +159,7 @@ public class PlayerController : MonoBehaviour {
 		float distance;
 		distance = Vector3.Distance (startpoint, this.transform.position);
 		float distanceMeters = (distance * (2.54f / 96)) * 10;
-		distanceGUIText.text = "Distance:" + distance.ToString ();
+		//distanceGUIText.text = "Distance:" + distance.ToString ();
 	}
 	#endregion
 	// touch
@@ -349,7 +343,6 @@ public class PlayerController : MonoBehaviour {
 	// move funcition.
 	private void move()
 	{
-<<<<<<< HEAD
 		Vector3 forward;
 		if (SpeedBoostActive) {
 			forward = transform.TransformDirection(0,0,runSpeed * SpeedBoost);
@@ -358,9 +351,7 @@ public class PlayerController : MonoBehaviour {
 			forward = transform.TransformDirection(0,0,runSpeed);
 
 		}
-=======
-		Vector3 forward = transform.TransformDirection(0,0,runSpeed);
->>>>>>> origin/master
+		 forward = transform.TransformDirection(0,0,runSpeed);
 		controller.SimpleMove (forward);
 		Score += 1;
 		ScoreGUIText.text = Score.ToString ();
@@ -393,7 +384,7 @@ public class PlayerController : MonoBehaviour {
 		float now = Time.time;
 		int sec = (int)now;
 		float mil = (now - (float)sec) * 100.0f;
-		this.elapseTimeGUIText.text = "Time: " + sec.ToString() + mil.ToString(":00");
+		//this.elapseTimeGUIText.text = "Time: " + sec.ToString() + mil.ToString(":00");
 			//string.Format("{0:00}:{1:00}", sec, mil);
 	}
 	void OnControllerColliderHit(ControllerColliderHit collision) {
@@ -412,11 +403,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-<<<<<<< HEAD
 
 	
-=======
->>>>>>> origin/master
 		if(other.tag == "Curve"){
 			canCurve = true;
 		}else{
@@ -436,7 +424,6 @@ public class PlayerController : MonoBehaviour {
 		case "RightDirection":
 			currentDirection = "Right";
 			break;
-<<<<<<< HEAD
 		case "MagnetItem":
 			activeMagnet ();
 			Destroy (other.gameObject);
@@ -449,8 +436,6 @@ public class PlayerController : MonoBehaviour {
 			activeCoinsMultiplier ();
 			Destroy (other.gameObject);
 			break;
-=======
->>>>>>> origin/master
 		}
 	}
 	public void Death(){
