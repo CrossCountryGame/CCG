@@ -8,7 +8,7 @@ public class Manager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		mng = this;
-	
+		Pause ();
 	}
 
 	public void Pause(){

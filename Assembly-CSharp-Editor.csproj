@@ -45,6 +45,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Editor\TCP2_Config.cs" />
+     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Editor\TCP2_GUI.cs" />
+     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Editor\TCP2_MaterialInspector.cs" />
+     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Editor\TCP2_Menu.cs" />
+     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Editor\TCP2_OutlineInspector.cs" />
+     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Editor\TCP2_ShaderGenerator.cs" />
+     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Editor\TCP2_SmoothedNormalsUtility.cs" />
+     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Editor\Utils\TCP2_ShaderGeneratorUtils.cs" />
+     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Editor\Utils\TCP2_Utils.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\Editor\EditorHelper.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\Editor\TextureLoader.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Editor\GamestrapUI.cs" />
@@ -52,19 +61,42 @@
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Editor\GamestrapUIPrefabs.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Editor\Theme\GamestrapTheme.cs" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\ubuntu\UBUNTU FONT LICENCE.txt" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Include\TCP2_Outline_SM2.shader" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\TCP2_OutlineOnly Blended.shader" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Bebas\Flat-it License.txt" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Desktop_Specular_Outline.shader" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Mobile_Specular_Outline.shader" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\!ToonyColorsPro Readme.txt" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Monospace\README.txt" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Mobile_Specular_OutlineBlending.shader" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\TCP2_OutlineOnly.shader" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Basis33\LICENSE.txt" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Mobile_OutlineBlending.shader" />
      <None Include="Assets\Resources\Other\Allsky\AllSkyDemoEnvironment\Specular Snow Vertex Colours.shader" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\PixelFJ8pt1\peace,...txt" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Mobile_Outline.shader" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Include\TCP2_Outline.shader" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Editor\Shader Templates\TCP2_User_Unity5.txt" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\TCP2_Mobile.shader" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Lato\SIL Open Font License.txt" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Desktop_Outline.shader" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\OpenSans\LICENSE.txt" />
+     <None Include="Assets\JMO Assets\!JMO Assets Readme.txt" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Basis33\README.txt" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Polaris\FontInfo.txt" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Bigfish\FontInfo.txt" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Desktop_OutlineBlending.shader" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Mobile_Specular.shader" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\TCP2_OutlineOnly Blended SM2.shader" />
      <None Include="Assets\Resources\Other\Allsky\allsky_readme.txt" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Graphics\Flags\_readme.txt" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Gizmos\_readme.txt" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Desktop_Specular.shader" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\TCP2_Desktop.shader" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Editor\Shader Templates\TCP2_User.txt" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\TCP2_OutlineOnly SM2.shader" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Include\TCP2_Include.cginc" />
+     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Desktop_Specular_OutlineBlending.shader" />
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
@@ -88,6 +120,9 @@
  </Reference>
  <Reference Include="UnityEditor.TreeEditor">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
+ </Reference>
+ <Reference Include="JMOAssets">
+ <HintPath>C:/Users/Nuncy/Documents/CrossCountry/Github/CCG/Assets/JMO Assets/Editor/JMOAssets.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
