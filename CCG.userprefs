@@ -1,10 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Manager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\..\AppData\Roaming\Skype\My Skype Received Files\PlayerCustomizer.cs">
     <Files>
-      <File FileName="Assets\Manager.cs" Line="11" Column="12" />
+      <File FileName="Assets\Script\PlayerController.cs" Line="83" Column="16" />
+      <File FileName="Assets\InfoCCG.cs" Line="27" Column="5" />
+      <File FileName="L:\Disco duro Cris\Cris\Documents\breedingapps\CorreCorre-Hecho-09\CorreCorre\Assets\Scripts\EstadoJuego.cs" Line="22" Column="4" />
+      <File FileName="Assets\Manager.cs" Line="70" Column="1" />
       <File FileName="Assets\Script\Coin.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\PlayerController.cs" Line="1" Column="1" />
+      <File FileName="..\..\..\..\AppData\Roaming\Skype\My Skype Received Files\PlayerCustomizer.cs" Line="106" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

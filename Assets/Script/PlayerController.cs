@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 startpoint;
 	public float movementForce;
 	public float movementForceDevice;
+	float MetersFromStart;
 	[Header("GUI")]
 	//public Text elapseTimeGUIText;
 	//public Text distanceGUIText;
@@ -55,6 +56,8 @@ public class PlayerController : MonoBehaviour {
 	private Vector2 touchStartPos;
 	private float lastRotateTime;
 	private bool  arrowKeyPressed;
+
+	public PlayerCustomizer Customizer;
 	#endregion
 	/// <summary>
 	// Variables of  the class.
@@ -62,6 +65,7 @@ public class PlayerController : MonoBehaviour {
 	//---------------
 	#region [StartFunction]
 	void Start(){
+		Customizer.ApplyColors (this);
 		controller = GetComponent<CharacterController>();
 		initHeight = gameObject.transform.position.y;
 		anim = this.GetComponent<Animator> ();
@@ -159,6 +163,7 @@ public class PlayerController : MonoBehaviour {
 		float distance;
 		distance = Vector3.Distance (startpoint, this.transform.position);
 		float distanceMeters = (distance * (2.54f / 96)) * 10;
+		MetersFromStart = distanceMeters;
 		//distanceGUIText.text = "Distance:" + distance.ToString ();
 	}
 	#endregion
@@ -354,6 +359,7 @@ public class PlayerController : MonoBehaviour {
 		 forward = transform.TransformDirection(0,0,runSpeed);
 		controller.SimpleMove (forward);
 		Score += 1;
+		InfoCCG.infoccg.Puntuation = Score;
 		ScoreGUIText.text = Score.ToString ();
 		this.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, runDirection, 0), 0.25f);
 	}
@@ -401,7 +407,12 @@ public class PlayerController : MonoBehaviour {
 
 	
 	}
-
+	void OnCollisionEnter(Collision collision) {
+		if(collision.gameObject.tag == "Obstacle"){
+			Death ();
+			Debug.Log ("DIE");
+		}
+	}
 	void OnTriggerEnter(Collider other) {
 
 	
@@ -436,15 +447,22 @@ public class PlayerController : MonoBehaviour {
 			activeCoinsMultiplier ();
 			Destroy (other.gameObject);
 			break;
+		case "Obstacle":
+			Death ();
+			Debug.Log ("DIE");
+			break;
 		}
 	}
 	public void Death(){
-		Debug.Log ("Dead");
-		anim.SetBool ("Dead", true);
-		Invoke ("Reset",1.5f);
+		
+		InfoCCG.infoccg.CompareData (Score,(int)MetersFromStart,ScoreCoins);
+		Manager.mng.Gameover ();
+		//Debug.Log ("Dead");
+		//anim.SetBool ("Dead", true);
+		//Invoke ("Reset",1.5f);
 	}
-
+	/*
 	void Reset (){
 		GameManager.gmanager.ResetScene ();
-	}
+	}*/
 }
