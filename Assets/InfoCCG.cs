@@ -3,6 +3,8 @@ using System.Collections;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using AppAdvisory.social;
+
 
 public class InfoCCG : MonoBehaviour {
 
@@ -24,7 +26,6 @@ public class InfoCCG : MonoBehaviour {
 
 	void Awake(){
 		dataPath = Application.persistentDataPath + "/data.dat";
-		//DontDestroyOnLoad(gameObject);
 		infoccg = this;
 	}
 
@@ -39,9 +40,9 @@ public class InfoCCG : MonoBehaviour {
 		if (puntuation > maxPuntuation) {
 			NewMaxPuntuation = true;
 			canSaveScore = true;
-			Manager.mng.NewHighscoreAlert.text = Manager.mng.AlertNewHighScoreText;
+			//Manager.mng.NewHighscoreAlert.text = Manager.mng.AlertNewHighScoreText;
 		} else {
-			Manager.mng.NewHighscoreAlert.text = "";
+			//Manager.mng.NewHighscoreAlert.text = "";
 		}
 		if(distanceReached > MaxDistanceReached){
 			canSaveDistance = true;
@@ -84,6 +85,7 @@ public class InfoCCG : MonoBehaviour {
 		DataToSave data = new DataToSave();
 		if(canSaveScore){
 			data.MaxPuntuationSaved = maxPuntuation;
+			LeaderboardManager.ReportScore (maxPuntuation);
 		}
 		if(canSaveDistance){
 			data.MaxDistanceReachedSaved = MaxDistanceReached;
@@ -97,7 +99,7 @@ public class InfoCCG : MonoBehaviour {
 		file.Close();
 	}
 
-	void Load (){
+	public void Load (){
 		if(File.Exists(dataPath)){
 			BinaryFormatter bf = new BinaryFormatter();
 			FileStream file = File.Open(dataPath, FileMode.Open);

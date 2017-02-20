@@ -81,7 +81,6 @@ public class PlayerController : MonoBehaviour {
 	//-------------
 	#region [UpdateFunction]
 	void Update(){
-		if (!Manager.mng.isPaused) {
 			//---------------------------Screen
 			this.processKeyInput();
 			this.processTouchInput();
@@ -90,7 +89,7 @@ public class PlayerController : MonoBehaviour {
 			this.updateElapsedTimeLabel();
 			this.speedUp();
 			this.calcDistance ();
-		}
+
 
 		currentHeight = gameObject.transform.position.y;
 		if(currentHeight > initHeight){
@@ -358,7 +357,10 @@ public class PlayerController : MonoBehaviour {
 		}
 		 forward = transform.TransformDirection(0,0,runSpeed);
 		controller.SimpleMove (forward);
-		Score += 1;
+		if(!Manager.mng.isPaused){
+
+			Score += 1;
+		}
 		InfoCCG.infoccg.Puntuation = Score;
 		ScoreGUIText.text = Score.ToString ();
 		this.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, runDirection, 0), 0.25f);
@@ -410,7 +412,6 @@ public class PlayerController : MonoBehaviour {
 	void OnCollisionEnter(Collision collision) {
 		if(collision.gameObject.tag == "Obstacle"){
 			Death ();
-			Debug.Log ("DIE");
 		}
 	}
 	void OnTriggerEnter(Collider other) {
@@ -449,7 +450,6 @@ public class PlayerController : MonoBehaviour {
 			break;
 		case "Obstacle":
 			Death ();
-			Debug.Log ("DIE");
 			break;
 		}
 	}
@@ -457,12 +457,7 @@ public class PlayerController : MonoBehaviour {
 		
 		InfoCCG.infoccg.CompareData (Score,(int)MetersFromStart,ScoreCoins);
 		Manager.mng.Gameover ();
-		//Debug.Log ("Dead");
-		//anim.SetBool ("Dead", true);
-		//Invoke ("Reset",1.5f);
+
 	}
-	/*
-	void Reset (){
-		GameManager.gmanager.ResetScene ();
-	}*/
+
 }

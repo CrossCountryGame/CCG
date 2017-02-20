@@ -2,48 +2,28 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using AppAdvisory.social;
+
 public class Manager : MonoBehaviour {
 
 	public bool isPaused = false;
-	bool PlayAtStart= false;
 	public static Manager mng;
 
-	public GameObject MainMenuPanel;
-	public GameObject GamePlayPanel;
-	[TextArea(3,10)]
-	public string AlertNewHighScoreText;
-	//GameOver Panel:
-	[Header ("GameOver Panel")]
-	public GameObject GameOverPanel;
-	public Text NewHighscoreAlert;
-	public Text ScoreReachedText;
-	public Text DistanceReachedText;
-	public Text CoinsReachedText;
+	//public GameObject MainMenuPanel;
+	//public GameObject GamePlayPanel;
+	//[TextArea(3,10)]
+	//public string AlertNewHighScoreText;
+
 	// Use this for initialization
 
 
 
 	void Awake(){
-		if(mng==null){
 			mng = this;
 			DontDestroyOnLoad(gameObject);
-		}else if(mng!=this){
-			Destroy(gameObject);
-		}
 	}
+
 	void Start () {
-		
-		if (PlayAtStart) {
-			MainMenuPanel.SetActive (false);
-			GamePlayPanel.SetActive (true);
-
-		} else {
-			MainMenuPanel.SetActive (true);
-			GamePlayPanel.SetActive (false);
-			Pause ();
-		}
-
-
 		Debug.Log ("Wallet: " + InfoCCG.infoccg.Wallet);
 	}
 
@@ -57,25 +37,26 @@ public class Manager : MonoBehaviour {
 		}
 	}
 
-	public void ResetScene(){
-		PlayAtStart = false;
-		SceneManager.LoadScene (0);
+	public void ReturnToMainMenu(){
+		SceneManager.LoadScene (1);
 
 	}
 	public void RunAgain(){
-		PlayAtStart = true;
-		SceneManager.LoadScene (0);
+		SceneManager.LoadScene (2);
 	}
 	public void Gameover(){
-		GameOverPanel.SetActive (true);
-		ScoreReachedText.text = "Score: " + InfoCCG.infoccg.Puntuation;
-		DistanceReachedText.text = "Distance " + InfoCCG.infoccg.DistanceReached;
-		CoinsReachedText.text = ": " + InfoCCG.infoccg.Wallet;
-		Pause ();
+		UIGamePlay.GPUI.ShowGameOverPanel ();
+	}
+	public void PlayGame(){
+		SceneManager.LoadScene (2);
+	}
+	//Call Leaderboard UI
+	public void ShowLeaderBoardAndroid(){
+		LeaderboardManager.ShowLeaderboardUI ();
 	}
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
 }
