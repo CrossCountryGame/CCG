@@ -50,13 +50,16 @@ public class Manager : MonoBehaviour {
 	}
 	public void Gameover(){
 		UIGamePlay.GPUI.ShowGameOverPanel ();
+		//Pause ();
 	}
+
 	public void PlayGame(){
 		SceneManager.LoadScene (2);
 	}
 	//Call Leaderboard UI
 	public void ShowLeaderBoardAndroid(){
 		LeaderboardManager.ShowLeaderboardUI ();
+
 	}
 	// Update is called once per frame
 	void Update () {
