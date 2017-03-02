@@ -38,10 +38,14 @@ public class Manager : MonoBehaviour {
 	}
 
 	public void ReturnToMainMenu(){
+		Debug.Log ("Wallet: " + InfoCCG.infoccg.Wallet);
+
 		SceneManager.LoadScene (1);
 
 	}
 	public void RunAgain(){
+		Debug.Log ("Wallet: " + InfoCCG.infoccg.Wallet);
+
 		SceneManager.LoadScene (2);
 	}
 	public void Gameover(){

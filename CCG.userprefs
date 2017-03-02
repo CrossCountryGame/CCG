@@ -1,18 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UIMainMenu.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\InfoCCG.cs">
     <Files>
-      <File FileName="Assets\UIMainMenu.cs" Line="10" Column="3" />
-      <File FileName="Assets\Script\PlayerController.cs" Line="362" Column="15" />
-      <File FileName="Assets\UIGamePlay.cs" Line="37" Column="65" />
-      <File FileName="Assets\Manager.cs" Line="55" Column="21" />
-      <File FileName="Assets\Script\Coin.cs" Line="1" Column="1" />
-      <File FileName="Assets\leaderboard\Scripts\LeaderboardInit.cs" Line="1" Column="1" />
-      <File FileName="Assets\InfoCCG.cs" Line="1" Column="1" />
-      <File FileName="Assets\loadgame.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\FacebookManager.cs" Line="42" Column="34" />
       <File FileName="Assets\leaderboard\Scripts\LeaderboardManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\InfoCCG.cs" Line="39" Column="11" />
+      <File FileName="Assets\Script\Manager.cs" Line="48" Column="3" />
+      <File FileName="Assets\Script\UIGamePlay.cs" Line="34" Column="14" />
+      <File FileName="Assets\Script\PlayerController.cs" Line="458" Column="69" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

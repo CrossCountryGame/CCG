@@ -36,10 +36,11 @@ public class InfoCCG : MonoBehaviour {
 	public void CompareData(int points, int dist, int coins){
 		puntuation = points;
 		distanceReached = dist;
-		wallet = coins;
+		wallet += coins;
 		if (puntuation > maxPuntuation) {
 			NewMaxPuntuation = true;
 			canSaveScore = true;
+			maxPuntuation = puntuation;
 			//Manager.mng.NewHighscoreAlert.text = Manager.mng.AlertNewHighScoreText;
 		} else {
 			//Manager.mng.NewHighscoreAlert.text = "";
@@ -80,6 +81,7 @@ public class InfoCCG : MonoBehaviour {
 
 	#endregion
 	void Save(){
+		Debug.Log ("saving");
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file = File.Create(dataPath);
 		DataToSave data = new DataToSave();
