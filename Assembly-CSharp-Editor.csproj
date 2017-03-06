@@ -79,10 +79,10 @@
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Editor\GamestrapUIHelper.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Editor\GamestrapUIPrefabs.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Editor\Theme\GamestrapTheme.cs" />
-     <Compile Include="Assets\leaderboard\Editor\AutorunVS.cs" />
-     <Compile Include="Assets\leaderboard\Editor\LDInspectorGUI.cs" />
-     <Compile Include="Assets\leaderboard\Editor\LDUtility.cs" />
-     <Compile Include="Assets\leaderboard\Editor\WelcomeVerySimpleLeaderboard.cs" />
+     <Compile Include="Assets\Resources\Other\leaderboard\Editor\AutorunVS.cs" />
+     <Compile Include="Assets\Resources\Other\leaderboard\Editor\LDInspectorGUI.cs" />
+     <Compile Include="Assets\Resources\Other\leaderboard\Editor\LDUtility.cs" />
+     <Compile Include="Assets\Resources\Other\leaderboard\Editor\WelcomeVerySimpleLeaderboard.cs" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\ubuntu\UBUNTU FONT LICENCE.txt" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\Include\TCP2_Outline_SM2.shader" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\TCP2_OutlineOnly Blended.shader" />
@@ -98,7 +98,6 @@
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Basis33\LICENSE.txt" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Mobile_OutlineBlending.shader" />
      <None Include="Assets\GooglePlayGames\Editor\template-AndroidManifest.txt" />
-     <None Include="Assets\Resources\Other\Allsky\AllSkyDemoEnvironment\Specular Snow Vertex Colours.shader" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\PixelFJ8pt1\peace,...txt" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Mobile_Outline.shader" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\Include\TCP2_Outline.shader" />
@@ -109,6 +108,7 @@
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\OpenSans\LICENSE.txt" />
      <None Include="Assets\Plugins\Android\MainLibProj\AndroidManifest.xml" />
      <None Include="Assets\Plugs\JMO Assets\!JMO Assets Readme.txt" />
+     <None Include="Assets\FogVolume\Resources\FogVolume.shader" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Basis33\README.txt" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Polaris\FontInfo.txt" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Bigfish\FontInfo.txt" />
@@ -121,6 +121,7 @@
      <None Include="Assets\Resources\Other\Gamestrap\UI\Graphics\Flags\_readme.txt" />
      <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Gizmos\_readme.txt" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Desktop_Specular.shader" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\TCP2_Desktop.shader" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Editor\Shader Templates\TCP2_User.txt" />
@@ -152,28 +153,28 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
  </Reference>
  <Reference Include="Google.IOSResolver">
- <HintPath>L:/CrossCountry/CCG/Assets/PlayServicesResolver/Editor/Google.IOSResolver.dll</HintPath>
+ <HintPath>L:/CrossCountry/CrossCountry/CCG/Assets/PlayServicesResolver/Editor/Google.IOSResolver.dll</HintPath>
  </Reference>
  <Reference Include="Google.JarResolver">
- <HintPath>L:/CrossCountry/CCG/Assets/PlayServicesResolver/Editor/Google.JarResolver.dll</HintPath>
+ <HintPath>L:/CrossCountry/CrossCountry/CCG/Assets/PlayServicesResolver/Editor/Google.JarResolver.dll</HintPath>
  </Reference>
  <Reference Include="Google.VersionHandler">
- <HintPath>L:/CrossCountry/CCG/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
+ <HintPath>L:/CrossCountry/CrossCountry/CCG/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity">
- <HintPath>L:/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Facebook.Unity.dll</HintPath>
+ <HintPath>L:/CrossCountry/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Facebook.Unity.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity.Editor">
- <HintPath>L:/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Editor/Facebook.Unity.Editor.dll</HintPath>
+ <HintPath>L:/CrossCountry/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Editor/Facebook.Unity.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity.PlatformEditor">
- <HintPath>L:/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Editor/Facebook.Unity.PlatformEditor.dll</HintPath>
+ <HintPath>L:/CrossCountry/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Editor/Facebook.Unity.PlatformEditor.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity.Settings">
- <HintPath>L:/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Settings/Facebook.Unity.Settings.dll</HintPath>
+ <HintPath>L:/CrossCountry/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Settings/Facebook.Unity.Settings.dll</HintPath>
  </Reference>
  <Reference Include="JMOAssets">
- <HintPath>L:/CrossCountry/CCG/Assets/Plugs/JMO Assets/Editor/JMOAssets.dll</HintPath>
+ <HintPath>L:/CrossCountry/CrossCountry/CCG/Assets/Plugs/JMO Assets/Editor/JMOAssets.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
@@ -195,6 +196,10 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{02237FD0-5967-841D-38BF-2F1A3F27CF2D}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
+      <Project>{AD905101-B177-645F-6792-D6EF3676BA1B}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{53ED8675-B04E-2BB1-2DA3-AD5E3CB02FBA}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>

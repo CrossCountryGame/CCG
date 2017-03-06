@@ -50,7 +50,7 @@ public class Manager : MonoBehaviour {
 	}
 	public void Gameover(){
 		UIGamePlay.GPUI.ShowGameOverPanel ();
-		//Pause ();
+		Pause ();
 	}
 
 	public void PlayGame(){

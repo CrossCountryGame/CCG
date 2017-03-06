@@ -45,6 +45,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\FogVolume\FogVolume.cs" />
+     <Compile Include="Assets\FogVolume\FogVolumeCreator.cs" />
      <Compile Include="Assets\GooglePlayGames\BasicApi\Achievement.cs" />
      <Compile Include="Assets\GooglePlayGames\BasicApi\CommonStatusCodes.cs" />
      <Compile Include="Assets\GooglePlayGames\BasicApi\CommonTypes.cs" />
@@ -223,8 +225,6 @@
      <Compile Include="Assets\GooglePlayGames\Platforms\PlayGamesClientFactory.cs" />
      <Compile Include="Assets\GooglePlayGames\Platforms\TokenClient.cs" />
      <Compile Include="Assets\GooglePlayGames\PluginVersion.cs" />
-     <Compile Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Demo TCP2\TCP2 Demo Assets\Misc\TCP2_Demo.cs" />
-     <Compile Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Demo TCP2\TCP2 Demo Assets\Misc\TCP2_Demo_View.cs" />
      <Compile Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Scripts\TCP2_RuntimeUtils.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Effects\GamestrapEffect.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Effects\GradientEffect.cs" />
@@ -232,17 +232,16 @@
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Effects\RadialGradientEffect.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Effects\ShadowEffect.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Effects\SkewEffect.cs" />
-     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Examples\Complete Project\Global\Scripts\ESceneNames.cs" />
-     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Examples\Complete Project\Global\Scripts\GSAppExampleControl.cs" />
-     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Examples\Complete Project\Global\Scripts\SceneTransitionsButton.cs" />
-     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Examples\Complete Project\Screens\Gameplay\GameplayUI.cs" />
-     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Examples\Complete Project\Screens\Levels\LevelsControl.cs" />
-     <Compile Include="Assets\Resources\Other\Gamestrap\UI\Examples\Complete Project\Screens\Main Menu\MainMenuControl.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Helper Scripts\ButtonShowHide.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Helper Scripts\ToggleButtonIcon.cs" />
+     <Compile Include="Assets\Resources\Other\leaderboard\Scripts\LEADERBOARDIDS.cs" />
+     <Compile Include="Assets\Resources\Other\leaderboard\Scripts\LeaderboardInit.cs" />
+     <Compile Include="Assets\Resources\Other\leaderboard\Scripts\LeaderboardManager.cs" />
      <Compile Include="Assets\Script\CameraController.cs" />
+     <Compile Include="Assets\Script\Cleaner.cs" />
      <Compile Include="Assets\Script\Coin.cs" />
      <Compile Include="Assets\Script\FacebookManager.cs" />
+     <Compile Include="Assets\Script\Follow.cs" />
      <Compile Include="Assets\Script\FrontPlayerCollider.cs" />
      <Compile Include="Assets\Script\GPGSIds.cs" />
      <Compile Include="Assets\Script\GameManager.cs" />
@@ -252,16 +251,10 @@
      <Compile Include="Assets\Script\NotificationCenter.cs" />
      <Compile Include="Assets\Script\PlayerController.cs" />
      <Compile Include="Assets\Script\PlayerCustomizer.cs" />
+     <Compile Include="Assets\Script\RoadManager.cs" />
      <Compile Include="Assets\Script\UIGamePlay.cs" />
      <Compile Include="Assets\Script\UIMainMenu.cs" />
      <Compile Include="Assets\Script\loadgame.cs" />
-     <Compile Include="Assets\leaderboard\Exemple\Scripts\OpenLeaderboard.cs" />
-     <Compile Include="Assets\leaderboard\Exemple\Scripts\PostScore.cs" />
-     <Compile Include="Assets\leaderboard\Exemple\Scripts\ReloadScene.cs" />
-     <Compile Include="Assets\leaderboard\Exemple\Scripts\SetText.cs" />
-     <Compile Include="Assets\leaderboard\Scripts\LEADERBOARDIDS.cs" />
-     <Compile Include="Assets\leaderboard\Scripts\LeaderboardInit.cs" />
-     <Compile Include="Assets\leaderboard\Scripts\LeaderboardManager.cs" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\ubuntu\UBUNTU FONT LICENCE.txt" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\Include\TCP2_Outline_SM2.shader" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\TCP2_OutlineOnly Blended.shader" />
@@ -277,7 +270,6 @@
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Basis33\LICENSE.txt" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Mobile_OutlineBlending.shader" />
      <None Include="Assets\GooglePlayGames\Editor\template-AndroidManifest.txt" />
-     <None Include="Assets\Resources\Other\Allsky\AllSkyDemoEnvironment\Specular Snow Vertex Colours.shader" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\PixelFJ8pt1\peace,...txt" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Mobile_Outline.shader" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\Include\TCP2_Outline.shader" />
@@ -288,6 +280,7 @@
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\OpenSans\LICENSE.txt" />
      <None Include="Assets\Plugins\Android\MainLibProj\AndroidManifest.xml" />
      <None Include="Assets\Plugs\JMO Assets\!JMO Assets Readme.txt" />
+     <None Include="Assets\FogVolume\Resources\FogVolume.shader" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Basis33\README.txt" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Polaris\FontInfo.txt" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Bigfish\FontInfo.txt" />
@@ -300,6 +293,7 @@
      <None Include="Assets\Resources\Other\Gamestrap\UI\Graphics\Flags\_readme.txt" />
      <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Gizmos\_readme.txt" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Desktop_Specular.shader" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\TCP2_Desktop.shader" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Editor\Shader Templates\TCP2_User.txt" />
@@ -313,11 +307,17 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity">
- <HintPath>L:/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Facebook.Unity.dll</HintPath>
+ <HintPath>L:/CrossCountry/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Facebook.Unity.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity.Settings">
- <HintPath>L:/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Settings/Facebook.Unity.Settings.dll</HintPath>
+ <HintPath>L:/CrossCountry/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Settings/Facebook.Unity.Settings.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{02237FD0-5967-841D-38BF-2F1A3F27CF2D}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
+      <Project>{AD905101-B177-645F-6792-D6EF3676BA1B}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

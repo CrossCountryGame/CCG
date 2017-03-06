@@ -22,10 +22,11 @@ public class PlayerController : MonoBehaviour {
 	int ScoreCoins;
 	int Score;
 	[Header("Character")]
+	public CameraController cam;
 	private float runSpeed;
 	private	int runDirection;
 	private Rigidbody rgbody;
-	string currentDirection = "Front";
+	public string currentDirection = "Front";
 	private Vector3 moveDirection = Vector3.zero;
 	private bool canCurve;
 	private Animator anim;
@@ -37,6 +38,8 @@ public class PlayerController : MonoBehaviour {
 	CharacterController controller;
 
 	[Header("Items Objects")]
+	public Transform roadManagaer;//Object with the tag Magnet
+
 	[Header("Magnet")]
 	public GameObject MagnerAbility;//Object with the tag Magnet
 	public int MagnetDuringTime = 3; // in seconds
@@ -56,8 +59,9 @@ public class PlayerController : MonoBehaviour {
 	private Vector2 touchStartPos;
 	private float lastRotateTime;
 	private bool  arrowKeyPressed;
-
+	public GameObject LoadingScreen;
 	public PlayerCustomizer Customizer;
+	bool canmove= true;
 	#endregion
 	/// <summary>
 	// Variables of  the class.
@@ -65,6 +69,11 @@ public class PlayerController : MonoBehaviour {
 	//---------------
 	#region [StartFunction]
 	void Start(){
+		if(Manager.mng.isPaused){
+			Manager.mng.Pause ();
+		}
+		canmove = true;
+		gameObject.transform.position = roadManagaer.position + new Vector3 (0,0.097f,0);
 		Customizer.ApplyColors (this);
 		controller = GetComponent<CharacterController>();
 		initHeight = gameObject.transform.position.y;
@@ -82,6 +91,7 @@ public class PlayerController : MonoBehaviour {
 	#region [UpdateFunction]
 	void Update(){
 			//---------------------------Screen
+		if(canmove){
 			this.processKeyInput();
 			this.processTouchInput();
 			//----------------------------Movement
@@ -89,6 +99,8 @@ public class PlayerController : MonoBehaviour {
 			this.updateElapsedTimeLabel();
 			this.speedUp();
 			this.calcDistance ();
+		}
+			
 
 
 		currentHeight = gameObject.transform.position.y;
@@ -202,8 +214,8 @@ public class PlayerController : MonoBehaviour {
 		}
 		#endregion
 		#region [Androoid moving Device]
-		if (Input.acceleration.x < 0) {
-			switch(currentDirection){
+		if (Input.acceleration.x < -0.3f) {
+			/*switch(currentDirection){
 			case "Front":
 				Vector3 moveFrontDevice = new Vector3 (-movementForceDevice, 0, 0);
 				controller.Move (moveFrontDevice);
@@ -224,9 +236,32 @@ public class PlayerController : MonoBehaviour {
 				controller.Move (moveRightDevice);
 				//rgbody.AddForce (0, 0, Input.acceleration.x * 500);
 				break;
-			}
-		} else if(Input.acceleration.x > 0){
+			}*/
 			switch(currentDirection){
+			case "Front":
+				Vector3 moveFront = new Vector3 (-movementForce * 2, 0, 0);
+				//controller.SimpleMove (moveFront);
+				controller.Move(moveFront);
+				//rgbody.AddForce (-movementForce * 10000, 0, 0);
+				break;
+			case "Left":
+				Vector3 moveLeft = new Vector3 (0, 0, movementForce * 2);
+				controller.Move (moveLeft);
+				//rgbody.AddForce (0, 0, movementForce * 100);
+				break;
+			case "Back":
+				Vector3 moveBack = new Vector3 (movementForce * 2, 0, 0);
+				controller.Move (moveBack);
+				//rgbody.AddForce (movementForce * 100, 0, 0);
+				break;
+			case "Right":
+				Vector3 moveRight = new Vector3 (0, 0, -movementForce * 2);
+				controller.Move (moveRight);
+				//rgbody.AddForce (0, 0, -movementForce * 100);
+				break;
+			}
+		} else if(Input.acceleration.x > 0.3){
+			/*switch(currentDirection){
 			case "Front":
 				Vector3 moveFrontDevice = new Vector3 (movementForceDevice, 0, 0);
 				controller.Move (moveFrontDevice);
@@ -243,6 +278,28 @@ public class PlayerController : MonoBehaviour {
 			case "Right":
 				Vector3 moveRightDevice = new Vector3 (0, 0,movementForceDevice);
 				controller.Move (moveRightDevice);
+				break;
+			}*/
+			switch(currentDirection){
+			case "Front":
+				Vector3 moveFront = new Vector3 (movementForce * 2, 0, 0);
+				controller.Move (moveFront);
+				//rgbody.AddForce (movementForce * 100, 0, 0);
+				break;
+			case "Left":
+				Vector3 moveLeft = new Vector3 (0, 0, -movementForce * 2);
+				controller.Move (moveLeft);
+				//rgbody.AddForce (0, 0, -movementForce * 100);
+				break;
+			case "Back":
+				Vector3 moveBack = new Vector3 (-movementForce * 2, 0, 0);
+				controller.Move (moveBack);
+				//rgbody.AddForce (-movementForce * 100, 0, 0);
+				break;
+			case "Right":
+				Vector3 moveRight = new Vector3 (0, 0, movementForce * 2);
+				controller.Move (moveRight);
+				//rgbody.AddForce (0, 0, movementForce * 100);
 				break;
 			}
 
@@ -356,7 +413,9 @@ public class PlayerController : MonoBehaviour {
 
 		}
 		 forward = transform.TransformDirection(0,0,runSpeed);
+		LoadingScreen.SetActive (false);
 		controller.SimpleMove (forward);
+		//Debug.Log ("Running");
 		if(!Manager.mng.isPaused){
 
 			Score += 1;
@@ -375,11 +434,13 @@ public class PlayerController : MonoBehaviour {
 
 	// players juping function.
 	void Jump(){
+
 		lastYPosition = initHeight;
 		moveDirection.y = jumpforce;
 		anim.SetBool ("landing",false);
 		anim.SetBool ("Jump",true);
 		anim.SetBool ("OnGround",false);
+
 	}
 	IEnumerator DownMovement(){
 		Debug.Log ("abajo");
@@ -407,7 +468,9 @@ public class PlayerController : MonoBehaviour {
 
 		}
 
-	
+		if(collision.gameObject.tag == "Obstacle"){
+			Death ();
+		}
 	}
 	void OnCollisionEnter(Collision collision) {
 		if(collision.gameObject.tag == "Obstacle"){
@@ -426,15 +489,22 @@ public class PlayerController : MonoBehaviour {
 		switch (other.tag) {
 		case "LeftDirection":
 			currentDirection = "Left";
+			cam.Direction = "Left";
 			break;
 		case "FrontDirection":
 			currentDirection = "Front";
+			cam.Direction = "Front";
+
 			break;
 		case "BackDirection":
 			currentDirection = "Back";
+			cam.Direction = "Back";
+
 			break;
 		case "RightDirection":
 			currentDirection = "Right";
+			cam.Direction = "Right";
+
 			break;
 		case "MagnetItem":
 			activeMagnet ();
@@ -454,7 +524,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 	public void Death(){
-		
+		canmove = false;
 		InfoCCG.infoccg.CompareData (Score,(int)MetersFromStart,ScoreCoins);
 		Manager.mng.Gameover ();
 
