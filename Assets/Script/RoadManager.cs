@@ -42,7 +42,7 @@ public class RoadManager : MonoBehaviour {
 			GameObject go;
 			if (canGenerateObs) {
 				go = Instantiate (roads [Random.Range (0, roads.Count)], transform.position, transform.rotation) as GameObject;
-				if (go.name.Contains("Road4")) {
+				if (go.name.Contains("Road4") || go.name.Contains("Road5")) {
 					canGenerateObs = false;
 					allowedNormalSpawns = spawningTillObs; 
 				}

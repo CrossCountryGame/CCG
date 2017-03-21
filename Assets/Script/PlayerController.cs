@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour {
 	public GameObject LoadingScreen;
 	public PlayerCustomizer Customizer;
 	bool canmove= true;
+	bool isSlide = false;
 	#endregion
 	/// <summary>
 	// Variables of  the class.
@@ -335,7 +336,7 @@ public class PlayerController : MonoBehaviour {
 				arrowKeyPressed = true;
 
 			} else if (Input.GetKeyDown(KeyCode.DownArrow)) {
-				//StartCoroutine ("DownMovement");
+				StartCoroutine ("DownMovement");
 				//NO NOW  
 				arrowKeyPressed = true;
 
@@ -434,19 +435,25 @@ public class PlayerController : MonoBehaviour {
 
 	// players juping function.
 	void Jump(){
+		if(!isSlide){
+			lastYPosition = initHeight;
+			moveDirection.y = jumpforce;
+			anim.SetBool ("landing",false);
+			anim.SetBool ("Jump",true);
+			anim.SetBool ("OnGround",false);
+		}
 
-		lastYPosition = initHeight;
-		moveDirection.y = jumpforce;
-		anim.SetBool ("landing",false);
-		anim.SetBool ("Jump",true);
-		anim.SetBool ("OnGround",false);
 
 	}
 	IEnumerator DownMovement(){
-		Debug.Log ("abajo");
-		anim.SetBool ("Down",true);
-		yield return new WaitForSeconds (1);
-		anim.SetBool ("Down",false);
+		//Todo esta aqui solo cambia por las variables del momento ;)
+		Debug.Log ("Slide");
+		anim.SetBool ("Slide",true);
+		isSlide = true;
+		yield return new WaitForSeconds (0.5f);
+		anim.SetBool ("Slide",false);
+		isSlide = false;
+	
 	}
 	private void updateElapsedTimeLabel()
 	{
@@ -520,6 +527,12 @@ public class PlayerController : MonoBehaviour {
 			break;
 		case "Obstacle":
 			Death ();
+			break;
+		case "ObstacleSlide":
+			if(!isSlide){
+				Death ();
+
+			}
 			break;
 		}
 	}
