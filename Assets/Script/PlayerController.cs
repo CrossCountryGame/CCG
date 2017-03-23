@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour {
 	public PlayerCustomizer Customizer;
 	bool canmove= true;
 	bool isSlide = false;
+	bool isdead= false;
 	#endregion
 	/// <summary>
 	// Variables of  the class.
@@ -78,7 +79,7 @@ public class PlayerController : MonoBehaviour {
 		Customizer.ApplyColors (this);
 		controller = GetComponent<CharacterController>();
 		initHeight = gameObject.transform.position.y;
-		anim = this.GetComponent<Animator> ();
+		anim = gameObject.GetComponent<Animator> ();
 		player = this;
 		startpoint = this.transform.position;
 		this.runSpeed = this.defaultRunSpeed;
@@ -92,16 +93,16 @@ public class PlayerController : MonoBehaviour {
 	#region [UpdateFunction]
 	void Update(){
 			//---------------------------Screen
-		if(canmove){
-			this.processKeyInput();
-			this.processTouchInput();
+		if (canmove) {
+			this.processKeyInput ();
+			this.processTouchInput ();
 			//----------------------------Movement
-			this.move();
-			this.updateElapsedTimeLabel();
-			this.speedUp();
+			this.move ();
+			this.updateElapsedTimeLabel ();
+			this.speedUp ();
 			this.calcDistance ();
+		
 		}
-			
 
 
 		currentHeight = gameObject.transform.position.y;
@@ -526,21 +527,31 @@ public class PlayerController : MonoBehaviour {
 			Destroy (other.gameObject);
 			break;
 		case "Obstacle":
+			
 			Death ();
 			break;
 		case "ObstacleSlide":
 			if(!isSlide){
 				Death ();
-
 			}
 			break;
 		}
 	}
 	public void Death(){
-		canmove = false;
-		InfoCCG.infoccg.CompareData (Score,(int)MetersFromStart,ScoreCoins);
-		Manager.mng.Gameover ();
+		if(!isdead){
+			canmove = false;
+			anim.SetBool ("Dead",true);
+			InfoCCG.infoccg.CompareData (Score,(int)MetersFromStart,ScoreCoins);
+			Manager.mng.Gameover ();
+		}
 
+	}
+	void stopDeathBool(){
+		isdead = true;
+		anim.SetBool ("OnGround",false);
+		anim.SetBool ("falling",false);
+		anim.SetBool ("Jump",false);
+		Debug.Log (isdead + "ASOASJOJDOSJ");
 	}
 
 }

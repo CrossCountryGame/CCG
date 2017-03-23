@@ -31,7 +31,7 @@ public class UIGamePlay : MonoBehaviour {
 		Manager.mng.Pause ();
 	}
 	public void ShowGameOverPanel(){
-		PauseButton ();
+		//PauseButton ();
 		pauseButtonObj.SetActive (false);
 		GameOverPanel.SetActive (true);
 		ScoreReachedText.text = "Score: " + InfoCCG.infoccg.Puntuation;
