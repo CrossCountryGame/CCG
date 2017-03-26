@@ -8,7 +8,7 @@ public class Manager : MonoBehaviour {
 
 	public bool isPaused = false;
 	public static Manager mng;
-
+	public bool isDead = false;
 	//public GameObject MainMenuPanel;
 	//public GameObject GamePlayPanel;
 	//[TextArea(3,10)]
@@ -45,15 +45,18 @@ public class Manager : MonoBehaviour {
 	}
 	public void RunAgain(){
 		Debug.Log ("Wallet: " + InfoCCG.infoccg.Wallet);
-
+		isDead = false;
 		SceneManager.LoadScene (2);
 	}
 	public void Gameover(){
 		UIGamePlay.GPUI.ShowGameOverPanel ();
+		isDead = true;
+		Debug.Log ("GameOver");
 		//Pause ();
 	}
 
 	public void PlayGame(){
+		isDead = false;
 		SceneManager.LoadScene (2);
 	}
 	//Call Leaderboard UI

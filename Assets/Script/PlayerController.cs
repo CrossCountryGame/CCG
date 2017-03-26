@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour {
 	private bool isFalling = false;
 	public float jumpforce;
 	public static PlayerController player;
-	CharacterController controller;
+	public CharacterController controller;
 
 	[Header("Items Objects")]
 	public Transform roadManagaer;//Object with the tag Magnet
@@ -69,15 +69,21 @@ public class PlayerController : MonoBehaviour {
 	// Variables of  the class.
 	/// </summary>
 	//---------------
+	public string CurrentDirection{
+		get{ 
+			return currentDirection;
+		}
+	}
 	#region [StartFunction]
 	void Start(){
 		if(Manager.mng.isPaused){
 			Manager.mng.Pause ();
 		}
+	
 		canmove = true;
-		gameObject.transform.position = roadManagaer.position + new Vector3 (0,0.097f,0);
+		//gameObject.transform.position = roadManagaer.position + new Vector3 (0,0.097f,0);
 		Customizer.ApplyColors (this);
-		controller = GetComponent<CharacterController>();
+		controller = gameObject.GetComponent<CharacterController>();
 		initHeight = gameObject.transform.position.y;
 		anim = gameObject.GetComponent<Animator> ();
 		player = this;
@@ -92,6 +98,10 @@ public class PlayerController : MonoBehaviour {
 	//-------------
 	#region [UpdateFunction]
 	void Update(){
+		if(controller == null){
+			Debug.Log("sap");
+			gameObject.GetComponent<CharacterController>();
+		}
 			//---------------------------Screen
 		if (canmove) {
 			this.processKeyInput ();
@@ -217,28 +227,7 @@ public class PlayerController : MonoBehaviour {
 		#endregion
 		#region [Androoid moving Device]
 		if (Input.acceleration.x < -0.3f) {
-			/*switch(currentDirection){
-			case "Front":
-				Vector3 moveFrontDevice = new Vector3 (-movementForceDevice, 0, 0);
-				controller.Move (moveFrontDevice);
-				//rgbody.AddForce (Input.acceleration.x * 500, 0, 0);
-				break;
-			case "Left":
-				Vector3 moveLeftDevice = new Vector3 (0, 0,movementForceDevice);
-				controller.Move (moveLeftDevice);
-				//rgbody.AddForce (0, 0, Input.acceleration.x * 500);
-				break;
-			case "Back":
-				Vector3 moveBackDevice = new Vector3 (movementForceDevice, 0,0);
-				controller.Move (moveBackDevice);
-				//rgbody.AddForce (Input.acceleration.x * 500, 0, 0);
-				break;
-			case "Right":
-				Vector3 moveRightDevice = new Vector3 (0, 0,-movementForceDevice);
-				controller.Move (moveRightDevice);
-				//rgbody.AddForce (0, 0, Input.acceleration.x * 500);
-				break;
-			}*/
+			
 			switch(currentDirection){
 			case "Front":
 				Vector3 moveFront = new Vector3 (-movementForce * 2, 0, 0);
@@ -263,25 +252,7 @@ public class PlayerController : MonoBehaviour {
 				break;
 			}
 		} else if(Input.acceleration.x > 0.3){
-			/*switch(currentDirection){
-			case "Front":
-				Vector3 moveFrontDevice = new Vector3 (movementForceDevice, 0, 0);
-				controller.Move (moveFrontDevice);
-				//rgbody.AddForce (movementForceDevice, 0, 0);
-				break;
-			case "Left":
-				Vector3 moveLeftDevice = new Vector3 (0, 0,-movementForceDevice);
-				controller.Move (moveLeftDevice);
-				break;
-			case "Back":
-				Vector3 moveBackDevice = new Vector3 (-movementForceDevice, 0,0);
-				controller.Move (moveBackDevice);
-				break;
-			case "Right":
-				Vector3 moveRightDevice = new Vector3 (0, 0,movementForceDevice);
-				controller.Move (moveRightDevice);
-				break;
-			}*/
+			
 			switch(currentDirection){
 			case "Front":
 				Vector3 moveFront = new Vector3 (movementForce * 2, 0, 0);
@@ -315,7 +286,24 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (!arrowKeyPressed && Time.time - lastRotateTime > 0.1f) {
 			if (Input.GetKey(KeyCode.LeftArrow) && canCurve) {
-				
+				switch(currentDirection){
+				case "Front":
+					currentDirection = "Right";
+					cam.Direction = "Right";
+					break;
+				case "Left":
+					currentDirection = "Front";
+					cam.Direction = "Front";
+					break;
+				case "Right":
+					currentDirection = "Back";
+					cam.Direction = "Back";
+					break;
+				case "Back":
+					currentDirection = "Left";
+					cam.Direction = "Left";
+					break;
+				}
 					runDirection -= 90;  
 					lastRotateTime = Time.time;
 					arrowKeyPressed = true;
@@ -324,7 +312,24 @@ public class PlayerController : MonoBehaviour {
 
 
 			} else if (Input.GetKey(KeyCode.RightArrow)&& canCurve) {
-					
+				switch(currentDirection){
+				case "Front":
+					currentDirection = "Left";
+					cam.Direction = "Left";
+					break;
+				case "Left":
+					currentDirection = "Back";
+					cam.Direction = "Back";
+					break;
+				case "Right":
+					currentDirection = "Front";
+					cam.Direction = "Front";
+					break;
+				case "Back":
+					currentDirection = "Right";
+					cam.Direction = "Right";
+					break;
+				}
 					runDirection += 90;
 					lastRotateTime = Time.time;
 					arrowKeyPressed = true;
@@ -423,7 +428,7 @@ public class PlayerController : MonoBehaviour {
 			Score += 1;
 		}
 		InfoCCG.infoccg.Puntuation = Score;
-		ScoreGUIText.text = Score.ToString ();
+		//ScoreGUIText.text = Score.ToString ();
 		this.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, runDirection, 0), 0.25f);
 	}
 
@@ -448,7 +453,6 @@ public class PlayerController : MonoBehaviour {
 	}
 	IEnumerator DownMovement(){
 		//Todo esta aqui solo cambia por las variables del momento ;)
-		Debug.Log ("Slide");
 		anim.SetBool ("Slide",true);
 		isSlide = true;
 		yield return new WaitForSeconds (0.5f);
@@ -485,14 +489,18 @@ public class PlayerController : MonoBehaviour {
 			Death ();
 		}
 	}
+
+
+	void OnTriggerExit(Collider other){
+		if(other.tag == "Curve"){
+			canCurve = false;
+		}
+	}
 	void OnTriggerEnter(Collider other) {
 
 	
 		if(other.tag == "Curve"){
 			canCurve = true;
-		}else{
-			canCurve = false;
-
 		}
 		switch (other.tag) {
 		case "LeftDirection":

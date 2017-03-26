@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{E7322E18-160C-B1B3-8424-D0B64679AC6A}</ProjectGuid>
+    <ProjectGuid>{02237FD0-5967-841D-38BF-2F1A3F27CF2D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
@@ -98,10 +98,10 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity">
- <HintPath>L:/Particion Cris/Pakcages/CCG-master/CCG-master/Assets/Plugs/FacebookSDK/Plugins/Facebook.Unity.dll</HintPath>
+ <HintPath>L:/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Facebook.Unity.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity.Settings">
- <HintPath>L:/Particion Cris/Pakcages/CCG-master/CCG-master/Assets/Plugs/FacebookSDK/Plugins/Settings/Facebook.Unity.Settings.dll</HintPath>
+ <HintPath>L:/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Settings/Facebook.Unity.Settings.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

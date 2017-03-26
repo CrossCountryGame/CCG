@@ -9,11 +9,11 @@ public class Cleaner : MonoBehaviour {
 	
 	}
 	void OnTriggerEnter(Collider coll){
-		if(coll.tag == "EnviromentTrash"){
+		if(coll.tag == "Trash"){
 			Destroy (coll.gameObject.transform.parent.gameObject);
 			prefabsCleaned++;
 			//if(prefabsCleaned == 1){
-			RoadManager.rdmanager.MultipleSpawn (1);
+			//RoadManager.rdmanager.MultipleSpawn (1);
 			//	prefabsCleaned = 0;
 			//}
 		}

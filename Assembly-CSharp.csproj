@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{B709F391-D595-32F1-DC76-C37029ED4F98}</ProjectGuid>
+    <ProjectGuid>{53ED8675-B04E-2BB1-2DA3-AD5E3CB02FBA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -225,6 +225,8 @@
      <Compile Include="Assets\GooglePlayGames\Platforms\PlayGamesClientFactory.cs" />
      <Compile Include="Assets\GooglePlayGames\Platforms\TokenClient.cs" />
      <Compile Include="Assets\GooglePlayGames\PluginVersion.cs" />
+     <Compile Include="Assets\PathInfo.cs" />
+     <Compile Include="Assets\PathSpawner.cs" />
      <Compile Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Scripts\TCP2_RuntimeUtils.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Effects\GamestrapEffect.cs" />
      <Compile Include="Assets\Resources\Other\Gamestrap\UI\Effects\GradientEffect.cs" />
@@ -255,6 +257,8 @@
      <Compile Include="Assets\Script\UIGamePlay.cs" />
      <Compile Include="Assets\Script\UIMainMenu.cs" />
      <Compile Include="Assets\Script\loadgame.cs" />
+     <Compile Include="Assets\StuffSpawner.cs" />
+     <Compile Include="Assets\TimeDestroyer.cs" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\ubuntu\UBUNTU FONT LICENCE.txt" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\Include\TCP2_Outline_SM2.shader" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\TCP2_OutlineOnly Blended.shader" />
@@ -307,17 +311,17 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity">
- <HintPath>L:/Particion Cris/Pakcages/CCG-master/CCG-master/Assets/Plugs/FacebookSDK/Plugins/Facebook.Unity.dll</HintPath>
+ <HintPath>L:/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Facebook.Unity.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity.Settings">
- <HintPath>L:/Particion Cris/Pakcages/CCG-master/CCG-master/Assets/Plugs/FacebookSDK/Plugins/Settings/Facebook.Unity.Settings.dll</HintPath>
+ <HintPath>L:/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Settings/Facebook.Unity.Settings.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{E7322E18-160C-B1B3-8424-D0B64679AC6A}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{02237FD0-5967-841D-38BF-2F1A3F27CF2D}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{8377782F-8E08-8DB2-5D6C-1591AEE35F3E}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+      <Project>{AD905101-B177-645F-6792-D6EF3676BA1B}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

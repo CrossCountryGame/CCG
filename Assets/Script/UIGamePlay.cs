@@ -22,13 +22,12 @@ public class UIGamePlay : MonoBehaviour {
 	}
 	public void ReturnToMainMenuButton(){
 		Manager.mng.ReturnToMainMenu();
-		Manager.mng.Pause ();
+		//Manager.mng.Pause ();
 
 
 	}
 	public void TryAgainButton(){
 		Manager.mng.RunAgain ();
-		Manager.mng.Pause ();
 	}
 	public void ShowGameOverPanel(){
 		//PauseButton ();

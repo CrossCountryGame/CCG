@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{F912EB75-2BD7-3FE8-1D51-51CD2C13F2C0}</ProjectGuid>
+    <ProjectGuid>{76972A00-E679-3489-22CD-22F7A14D39CF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -153,28 +153,28 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
  </Reference>
  <Reference Include="Google.IOSResolver">
- <HintPath>L:/Particion Cris/Pakcages/CCG-master/CCG-master/Assets/PlayServicesResolver/Editor/Google.IOSResolver.dll</HintPath>
+ <HintPath>L:/CrossCountry/CCG/Assets/PlayServicesResolver/Editor/Google.IOSResolver.dll</HintPath>
  </Reference>
  <Reference Include="Google.JarResolver">
- <HintPath>L:/Particion Cris/Pakcages/CCG-master/CCG-master/Assets/PlayServicesResolver/Editor/Google.JarResolver.dll</HintPath>
+ <HintPath>L:/CrossCountry/CCG/Assets/PlayServicesResolver/Editor/Google.JarResolver.dll</HintPath>
  </Reference>
  <Reference Include="Google.VersionHandler">
- <HintPath>L:/Particion Cris/Pakcages/CCG-master/CCG-master/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
+ <HintPath>L:/CrossCountry/CCG/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity">
- <HintPath>L:/Particion Cris/Pakcages/CCG-master/CCG-master/Assets/Plugs/FacebookSDK/Plugins/Facebook.Unity.dll</HintPath>
+ <HintPath>L:/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Facebook.Unity.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity.Editor">
- <HintPath>L:/Particion Cris/Pakcages/CCG-master/CCG-master/Assets/Plugs/FacebookSDK/Plugins/Editor/Facebook.Unity.Editor.dll</HintPath>
+ <HintPath>L:/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Editor/Facebook.Unity.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity.PlatformEditor">
- <HintPath>L:/Particion Cris/Pakcages/CCG-master/CCG-master/Assets/Plugs/FacebookSDK/Plugins/Editor/Facebook.Unity.PlatformEditor.dll</HintPath>
+ <HintPath>L:/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Editor/Facebook.Unity.PlatformEditor.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity.Settings">
- <HintPath>L:/Particion Cris/Pakcages/CCG-master/CCG-master/Assets/Plugs/FacebookSDK/Plugins/Settings/Facebook.Unity.Settings.dll</HintPath>
+ <HintPath>L:/CrossCountry/CCG/Assets/Plugs/FacebookSDK/Plugins/Settings/Facebook.Unity.Settings.dll</HintPath>
  </Reference>
  <Reference Include="JMOAssets">
- <HintPath>L:/Particion Cris/Pakcages/CCG-master/CCG-master/Assets/Plugs/JMO Assets/Editor/JMOAssets.dll</HintPath>
+ <HintPath>L:/CrossCountry/CCG/Assets/Plugs/JMO Assets/Editor/JMOAssets.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
@@ -197,11 +197,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{E7322E18-160C-B1B3-8424-D0B64679AC6A}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{02237FD0-5967-841D-38BF-2F1A3F27CF2D}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{8377782F-8E08-8DB2-5D6C-1591AEE35F3E}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+      <Project>{AD905101-B177-645F-6792-D6EF3676BA1B}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{B709F391-D595-32F1-DC76-C37029ED4F98}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{53ED8675-B04E-2BB1-2DA3-AD5E3CB02FBA}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
