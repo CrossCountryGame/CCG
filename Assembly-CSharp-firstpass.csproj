@@ -75,6 +75,7 @@
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Basis33\README.txt" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Polaris\FontInfo.txt" />
      <None Include="Assets\Resources\Other\Gamestrap\UI\Fonts\Bigfish\FontInfo.txt" />
+     <None Include="Assets\MeshBaker\Release Notes.txt" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Desktop_OutlineBlending.shader" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Mobile_Specular.shader" />
      <None Include="Assets\GooglePlayGames\Editor\template-Constants.txt" />
@@ -88,6 +89,7 @@
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Desktop_Specular.shader" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\TCP2_Desktop.shader" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Editor\Shader Templates\TCP2_User.txt" />
+     <None Include="Assets\MeshBaker\README.txt" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\TCP2_OutlineOnly SM2.shader" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\Include\TCP2_Include.cginc" />
      <None Include="Assets\Plugs\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants Base\TCP2_Desktop_Specular_OutlineBlending.shader" />
