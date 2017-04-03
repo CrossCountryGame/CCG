@@ -16,10 +16,8 @@ public class PlayerController : MonoBehaviour {
 	[Header("GUI")]
 	//public Text elapseTimeGUIText;
 	//public Text distanceGUIText;
-	public Text pointGUIText;
-	public Text ScoreGUIText;
+
 	[Header("Data")]
-	int ScoreCoins;
 	int Score;
 	[Header("Character")]
 	public CameraController cam;
@@ -172,12 +170,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	#endregion
 
-	#region [Plus Point Function]
-	public void plusPoints(int coin){
-		ScoreCoins += coin;
-		pointGUIText.text = ScoreCoins.ToString ();
-	}
-	#endregion
+
 	/// <summary>
 	// increase the coins.
 	/// </summary>
@@ -226,51 +219,52 @@ public class PlayerController : MonoBehaviour {
 		}
 		#endregion
 		#region [Androoid moving Device]
-		if (Input.acceleration.x < -0.3f) {
+		if (Input.acceleration.x < -0.1f) {
 			
 			switch(currentDirection){
 			case "Front":
-				Vector3 moveFront = new Vector3 (-movementForce * 2, 0, 0);
+				Vector3 moveFront = new Vector3 (-movementForce, 0, 0);
 				//controller.SimpleMove (moveFront);
 				controller.Move(moveFront);
 				//rgbody.AddForce (-movementForce * 10000, 0, 0);
 				break;
 			case "Left":
-				Vector3 moveLeft = new Vector3 (0, 0, movementForce * 2);
+				Vector3 moveLeft = new Vector3 (0, 0, movementForce);
 				controller.Move (moveLeft);
 				//rgbody.AddForce (0, 0, movementForce * 100);
 				break;
 			case "Back":
-				Vector3 moveBack = new Vector3 (movementForce * 2, 0, 0);
+				Vector3 moveBack = new Vector3 (movementForce, 0, 0);
 				controller.Move (moveBack);
 				//rgbody.AddForce (movementForce * 100, 0, 0);
 				break;
 			case "Right":
-				Vector3 moveRight = new Vector3 (0, 0, -movementForce * 2);
+				Vector3 moveRight = new Vector3 (0, 0, -movementForce);
 				controller.Move (moveRight);
 				//rgbody.AddForce (0, 0, -movementForce * 100);
 				break;
 			}
-		} else if(Input.acceleration.x > 0.3){
+
+		} else if(Input.acceleration.x > 0.1f){
 			
 			switch(currentDirection){
 			case "Front":
-				Vector3 moveFront = new Vector3 (movementForce * 2, 0, 0);
+				Vector3 moveFront = new Vector3 (movementForce, 0, 0);
 				controller.Move (moveFront);
 				//rgbody.AddForce (movementForce * 100, 0, 0);
 				break;
 			case "Left":
-				Vector3 moveLeft = new Vector3 (0, 0, -movementForce * 2);
+				Vector3 moveLeft = new Vector3 (0, 0, -movementForce);
 				controller.Move (moveLeft);
 				//rgbody.AddForce (0, 0, -movementForce * 100);
 				break;
 			case "Back":
-				Vector3 moveBack = new Vector3 (-movementForce * 2, 0, 0);
+				Vector3 moveBack = new Vector3 (-movementForce, 0, 0);
 				controller.Move (moveBack);
 				//rgbody.AddForce (-movementForce * 100, 0, 0);
 				break;
 			case "Right":
-				Vector3 moveRight = new Vector3 (0, 0, movementForce * 2);
+				Vector3 moveRight = new Vector3 (0, 0, movementForce);
 				controller.Move (moveRight);
 				//rgbody.AddForce (0, 0, movementForce * 100);
 				break;
@@ -422,12 +416,11 @@ public class PlayerController : MonoBehaviour {
 		 forward = transform.TransformDirection(0,0,runSpeed);
 		LoadingScreen.SetActive (false);
 		controller.SimpleMove (forward);
-		//Debug.Log ("Running");
 		if(!Manager.mng.isPaused){
-
 			Score += 1;
 		}
 		InfoCCG.infoccg.Puntuation = Score;
+
 		//ScoreGUIText.text = Score.ToString ();
 		this.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, runDirection, 0), 0.25f);
 	}
@@ -549,7 +542,7 @@ public class PlayerController : MonoBehaviour {
 		if(!isdead){
 			canmove = false;
 			anim.SetBool ("Dead",true);
-			InfoCCG.infoccg.CompareData (Score,(int)MetersFromStart,ScoreCoins);
+			InfoCCG.infoccg.CompareData (Score,(int)MetersFromStart);
 			Manager.mng.Gameover ();
 		}
 

@@ -1,19 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
-using AppAdvisory.social;
 
 public class UIMainMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		LeaderboardManager.Init ();
+		//LeaderboardManager.Init ();
 
 	}
 	public void PlayButton(){
 		Manager.mng.PlayGame();
 	}
 	public void LeaderBoardButton(){
-		LeaderboardManager.ShowLeaderboardUI ();
+		//LeaderboardManager.ShowLeaderboardUI ();
 	}
 	// Update is called once per frame
 	void Update () {

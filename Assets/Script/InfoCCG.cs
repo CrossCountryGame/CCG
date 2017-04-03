@@ -3,53 +3,69 @@ using System.Collections;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using AppAdvisory.social;
 
 
 public class InfoCCG : MonoBehaviour {
 
+	[Header ("Paths")]
+	public GameObject[] path;
 	//Player Stadistics.
 	int puntuation;
 	int distanceReached;
 	int CoinsInGamePlay;
-
 	bool NewMaxPuntuation = false;
 	//Important to store-----------------
 	int maxPuntuation;
 	int MaxDistanceReached;
 	int wallet;
-	bool canSaveScore = false;
-	bool canSaveDistance = false;
 	//------------
+
+	int tempCoins;
 	public static InfoCCG infoccg;	
-	string dataPath;
 
 	void Awake(){
-		dataPath = Application.persistentDataPath + "/data.dat";
+		// whit this I can know if the first time played this game on the device
+		if(PlayerPrefs.GetString("firstTime") == "yes"){
+			PlayerPrefs.SetString ("firstTime","no");
+		}
 		infoccg = this;
 	}
 
 	void Start(){
 		Load ();
 	}
+	void Load(){
+		maxPuntuation = PlayerPrefs.GetInt ("maxPuntuation");
+		wallet = PlayerPrefs.GetInt ("wallet");
+		MaxDistanceReached = PlayerPrefs.GetInt ("maxDistance");
+	}
 
-	public void CompareData(int points, int dist, int coins){
+	public void storeCurrentCoins(int c){
+		tempCoins += c;
+	}
+	public void CompareData(int points, int dist){
+		Debug.Log ("Max" + maxPuntuation);
+
 		puntuation = points;
 		distanceReached = dist;
-		wallet += coins;
+		wallet = PlayerPrefs.GetInt ("wallet");
+		PlayerPrefs.SetInt ("wallet", wallet + tempCoins);
 		if (puntuation > maxPuntuation) {
 			NewMaxPuntuation = true;
-			canSaveScore = true;
-			maxPuntuation = puntuation;
-			//Manager.mng.NewHighscoreAlert.text = Manager.mng.AlertNewHighScoreText;
-		} else {
-			//Manager.mng.NewHighscoreAlert.text = "";
+			PlayerPrefs.SetInt ("maxPuntuation",puntuation);
+			maxPuntuation = PlayerPrefs.GetInt ("maxPuntuation");
+			Debug.Log ("Max Reached" + maxPuntuation);
 		}
 		if(distanceReached > MaxDistanceReached){
-			canSaveDistance = true;
-		}
+			PlayerPrefs.SetInt ("maxDistance",distanceReached);
+			MaxDistanceReached = PlayerPrefs.GetInt ("maxDistance");
 
-		Save ();
+		}
+		//tempCoins = 0;
+	}
+
+	public void ResetValues(){
+		tempCoins = 0;
 	}
 
 	#region[Get and Set]
@@ -78,51 +94,15 @@ public class InfoCCG : MonoBehaviour {
 			wallet = value;
 		}
 	}
+	public int TempCoins{
+		get{ 
+			return tempCoins;
+		}
+	}
 
 	#endregion
-	void Save(){
-		Debug.Log ("saving");
-		BinaryFormatter bf = new BinaryFormatter();
-		FileStream file = File.Create(dataPath);
-		DataToSave data = new DataToSave();
-		if(canSaveScore){
-			data.MaxPuntuationSaved = maxPuntuation;
-			LeaderboardManager.ReportScore (maxPuntuation);
-		}
-		if(canSaveDistance){
-			data.MaxDistanceReachedSaved = MaxDistanceReached;
 
-		}
 
-		data.walletSaved += wallet;
-
-		bf.Serialize(file, data);
-
-		file.Close();
-	}
-
-	public void Load (){
-		if(File.Exists(dataPath)){
-			BinaryFormatter bf = new BinaryFormatter();
-			FileStream file = File.Open(dataPath, FileMode.Open);
-
-			DataToSave data = (DataToSave) bf.Deserialize(file);
-
-			maxPuntuation = data.MaxPuntuationSaved;
-			MaxDistanceReached = data.MaxDistanceReachedSaved;
-			wallet = data.walletSaved;
-
-			file.Close();
-		}else{
-			maxPuntuation = 0;
-		}
-	}
 
 }
 
-[Serializable]
-class DataToSave{
-	public int MaxPuntuationSaved;
-	public int MaxDistanceReachedSaved;
-	public int walletSaved;
-}

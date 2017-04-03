@@ -19,7 +19,7 @@ public class Coin : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider coll){
 		if(coll.tag == "Player"){
-			PlayerController.player.plusPoints (CoinValue);
+			InfoCCG.infoccg.storeCurrentCoins (1);
 			Destroy (gameObject);
 		}
 		if(coll.tag == "Magnet"){

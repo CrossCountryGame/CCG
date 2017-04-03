@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class UIGamePlay : MonoBehaviour {
 	public static UIGamePlay GPUI;
+	[Header("Gameplay UI")]
+	public Text Coinstxt;
+	public Text Scoretxt;
 	[Header ("GameOver Panel")]
 	public GameObject GameOverPanel;
 	public Text NewHighscoreAlert;
@@ -35,10 +38,12 @@ public class UIGamePlay : MonoBehaviour {
 		GameOverPanel.SetActive (true);
 		ScoreReachedText.text = "Score: " + InfoCCG.infoccg.Puntuation;
 		DistanceReachedText.text = "Distance " + InfoCCG.infoccg.DistanceReached;
-		CoinsReachedText.text = ": " + InfoCCG.infoccg.Wallet;
+		CoinsReachedText.text = ": " + InfoCCG.infoccg.TempCoins;
+
 	}
 	// Update is called once per frame
 	void Update () {
-
+		Coinstxt.text = InfoCCG.infoccg.TempCoins.ToString();
+		Scoretxt.text = InfoCCG.infoccg.Puntuation.ToString();
 	}
 }
