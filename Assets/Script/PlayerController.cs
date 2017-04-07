@@ -198,10 +198,51 @@ public class PlayerController : MonoBehaviour {
 		} else if (phase == TouchPhase.Ended || phase == TouchPhase.Canceled) {
 				if(isFalling == false){
 					if (touch.position.x < (touchStartPos.x - 75) && canCurve) {
-						runDirection -= 90;
+						switch(currentDirection){
+						case "Front":
+							currentDirection = "Right";
+							cam.Direction = "Right";
+							break;
+						case "Left":
+							currentDirection = "Front";
+							cam.Direction = "Front";
+							break;
+						case "Right":
+							currentDirection = "Back";
+							cam.Direction = "Back";
+							break;
+						case "Back":
+							currentDirection = "Left";
+							cam.Direction = "Left";
+							break;
+						}
+						runDirection -= 90;  
+						lastRotateTime = Time.time;
+						arrowKeyPressed = true;
+						canCurve = false;
 					} else if (touch.position.x > (touchStartPos.x + 75) && canCurve){
-						runDirection += 90;
 
+						switch(currentDirection){
+						case "Front":
+							currentDirection = "Left";
+							cam.Direction = "Left";
+							break;
+						case "Left":
+							currentDirection = "Back";
+							cam.Direction = "Back";
+							break;
+						case "Right":
+							currentDirection = "Front";
+							cam.Direction = "Front";
+							break;
+						case "Back":
+							currentDirection = "Right";
+							cam.Direction = "Right";
+							break;
+						}
+						runDirection += 90;
+						lastRotateTime = Time.time;
+						arrowKeyPressed = true;
 					}
 				}
 
@@ -212,7 +253,8 @@ public class PlayerController : MonoBehaviour {
 
 				} else if (touch.position.y < (touchStartPos.y - 130) && isFalling == false) {
 					StartCoroutine ("DownMovement");
-
+					//NO NOW  
+					isSlide = true;
 					arrowKeyPressed = true;
 				}
 		}
@@ -338,6 +380,7 @@ public class PlayerController : MonoBehaviour {
 			} else if (Input.GetKeyDown(KeyCode.DownArrow)) {
 				StartCoroutine ("DownMovement");
 				//NO NOW  
+				isSlide = true;
 				arrowKeyPressed = true;
 
 			}
@@ -447,9 +490,10 @@ public class PlayerController : MonoBehaviour {
 	IEnumerator DownMovement(){
 		//Todo esta aqui solo cambia por las variables del momento ;)
 		anim.SetBool ("Slide",true);
-		isSlide = true;
 		yield return new WaitForSeconds (0.5f);
 		anim.SetBool ("Slide",false);
+		yield return new WaitForSeconds (0.5f);
+
 		isSlide = false;
 	
 	}
