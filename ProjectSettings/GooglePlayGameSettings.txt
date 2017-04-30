@@ -1,0 +1,9 @@
+lastUpgrade=00937
+proj.pluginVersion=0.9.37
+proj.AppId=955040390508
+and.BundleId=com.Glink.CrossCountry
+proj.classDir=Assets
+proj.ConstantsClassName=GPGSIds
+and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0d%0a%0a%3cresources%3e%0d%0a++%3cstring+name%3d%22app_id%22%3e955040390508%3c%2fstring%3e%0d%0a++%3cstring+name%3d%22package_name%22%3ecom.Glink.CrossCountry%3c%2fstring%3e%0d%0a++%3cstring+name%3d%22achievement_firstpurchase%22%3eCgkI7Lrf5uUbEAIQAg%3c%2fstring%3e%0d%0a++%3cstring+name%3d%22achievement_15_meters%22%3eCgkI7Lrf5uUbEAIQAw%3c%2fstring%3e%0d%0a++%3cstring+name%3d%22leaderboard_score%22%3eCgkI7Lrf5uUbEAIQAA%3c%2fstring%3e%0d%0a%3c%2fresources%3e%0d%0a
+and.ClientId=
+android.SetupDone=true

@@ -19,16 +19,17 @@ public class Coin : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider coll){
 		if(coll.tag == "Player"){
-			InfoCCG.infoccg.storeCurrentCoins (1);
+			InfoCCG.infoccg.storeCurrentCoins (1 * PlayerPrefs.GetInt ("CoinsMultiplier"));
 			Destroy (gameObject);
 		}
-		if(coll.tag == "Magnet"){
-			MagnetOn = true;
-		}
+		//if(coll.tag == "Magnet"){
+
+		//	MagnetOn = true;
+		//}
 	}
 	// Update is called once per frame
 	void Update () {
-		if(MagnetOn){
+		if(PlayerPrefs.GetString ("MagnetAbility") == "on" && Vector3.Distance(PlayerController.player.gameObject.transform.position,this.transform.position) < 6f){
 			currentLerpTime += Time.deltaTime * 20;
 			if(currentLerpTime >= lerpTime){
 				currentLerpTime = lerpTime;

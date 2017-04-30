@@ -55,6 +55,7 @@ public class InfoCCG : MonoBehaviour {
 			PlayerPrefs.SetInt ("maxPuntuation",puntuation);
 			maxPuntuation = PlayerPrefs.GetInt ("maxPuntuation");
 			Debug.Log ("Max Reached" + maxPuntuation);
+			Manager.mng.ReportScore (maxPuntuation,"CgkI7Lrf5uUbEAIQAA");
 		}
 		if(distanceReached > MaxDistanceReached){
 			PlayerPrefs.SetInt ("maxDistance",distanceReached);

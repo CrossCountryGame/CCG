@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 startpoint;
 	public float movementForce;
 	public float movementForceDevice;
-	float MetersFromStart;
+	public float MetersFromStart;
 	[Header("GUI")]
 	//public Text elapseTimeGUIText;
 	//public Text distanceGUIText;
@@ -37,18 +37,19 @@ public class PlayerController : MonoBehaviour {
 
 	[Header("Items Objects")]
 	public Transform roadManagaer;//Object with the tag Magnet
-
+	public GameObject magnetIcon;
+	public GameObject boostIcon;
 	[Header("Magnet")]
 	public GameObject MagnerAbility;//Object with the tag Magnet
-	public int MagnetDuringTime = 3; // in seconds
+	public int MagnetDuringTime; // in seconds
 	[Header ("Speed Up")]
-	public int SpeedBoost = 3;
+	public int SpeedBoost;
 	public int SpeedUpDuringTime = 3; // in seconds
 	bool SpeedBoostActive= false;
 	[Header ("Coins multiplier")]
 	public int MultiplierNumber = 2;
 	public int CoinsMultiplierDuration = 3; // in seconds
-
+	private SwipeControl.SWIPE_DIRECTION m_enCurrentDirection;
 	//-------------------------------
 	[Header("Debug Data")]
 	public float initHeight;
@@ -62,6 +63,8 @@ public class PlayerController : MonoBehaviour {
 	bool canmove= true;
 	bool isSlide = false;
 	bool isdead= false;
+	string RotateTo = "";
+	bool canSwipe = true;
 	#endregion
 	/// <summary>
 	// Variables of  the class.
@@ -74,10 +77,17 @@ public class PlayerController : MonoBehaviour {
 	}
 	#region [StartFunction]
 	void Start(){
-		if(Manager.mng.isPaused){
-			Manager.mng.Pause ();
-		}
-	
+	//	if (Manager.mng.isPaused) {
+	//		Manager.mng.Pause ();
+	//	}
+		MagnetDuringTime = PlayerPrefs.GetInt("MagnetTime");
+		SpeedBoost = PlayerPrefs.GetInt ("SpeedBoost");
+		PlayerPrefs.SetString ("MagnetAbility","off");
+
+
+		GameObject.Find("SwipeController").GetComponent<SwipeControl>().SetMethodToCall( ScontrolHandler );
+
+		//GameObject.Find("SwipeControl")​.GetComponent<SwipeControl>().SetMethodToCall( MyCallbackMethod);
 		canmove = true;
 		//gameObject.transform.position = roadManagaer.position + new Vector3 (0,0.097f,0);
 		Customizer.ApplyColors (this);
@@ -89,6 +99,7 @@ public class PlayerController : MonoBehaviour {
 		this.runSpeed = this.defaultRunSpeed;
 		rgbody = this.GetComponent<Rigidbody> ();
 	}
+
 	#endregion
 	/// <summary>
 	// Calling starting methods.
@@ -140,9 +151,15 @@ public class PlayerController : MonoBehaviour {
 		StartCoroutine ("MagnetWorking");
 	}
 	IEnumerator MagnetWorking(){
-		MagnerAbility.SetActive (true);
+		PlayerPrefs.SetString ("MagnetAbility","on");
+		magnetIcon.SetActive (true);
+		//MagnerAbility.SetActive (true);
 		yield return new WaitForSeconds (MagnetDuringTime);
-		MagnerAbility.SetActive (false);
+		//MagnerAbility.SetActive (false);
+		PlayerPrefs.SetString ("MagnetAbility","off");
+		magnetIcon.SetActive (false);
+
+
 	}
 	//------------------------------------
 	public void activeSpeedUp(){
@@ -150,8 +167,9 @@ public class PlayerController : MonoBehaviour {
 	}
 	IEnumerator SpeedUpWorking(){
 		SpeedBoostActive = true;
-
+		boostIcon.SetActive (true);
 		yield return new WaitForSeconds (SpeedUpDuringTime);
+		boostIcon.SetActive (false);
 
 		SpeedBoostActive = false;
 	}
@@ -180,88 +198,82 @@ public class PlayerController : MonoBehaviour {
 		distance = Vector3.Distance (startpoint, this.transform.position);
 		float distanceMeters = (distance * (2.54f / 96)) * 10;
 		MetersFromStart = distanceMeters;
+		PlayerPrefs.SetInt ("tempDistance",(int)MetersFromStart);
+		if(distanceMeters > 15f){
+			Manager.mng.ReportAchievement ("CgkI7Lrf5uUbEAIQAw");
+
+		}
 		//distanceGUIText.text = "Distance:" + distance.ToString ();
 	}
 	#endregion
 	// touch
-
-	// Touching Android Screen process.
-	private void processTouchInput()
-	{
+	private void ScontrolHandler(SwipeControl.SWIPE_DIRECTION iDirection){
 		#region [Android Rotation]
-		if (Input.touchCount > 0) {
+		switch ( iDirection ) {
+		case SwipeControl.SWIPE_DIRECTION.SD_UP:
+			Jump ();
+			isFalling = true;
+			arrowKeyPressed = true;
+			break;
+		case SwipeControl.SWIPE_DIRECTION.SD_DOWN:
+			StartCoroutine ("DownMovement");
+			//NO NOW  
+			arrowKeyPressed = true;		
+			break;
+		case SwipeControl.SWIPE_DIRECTION.SD_LEFT:
+			RotateTo = "left";
+			break;
+		case SwipeControl.SWIPE_DIRECTION.SD_RIGHT:
+			RotateTo = "right";
 
-		Touch touch = Input.touches [0];
-		TouchPhase phase = touch.phase;
-		if (phase == TouchPhase.Began) {
-			touchStartPos = touch.position;
-		} else if (phase == TouchPhase.Ended || phase == TouchPhase.Canceled) {
-				if(isFalling == false){
-					if (touch.position.x < (touchStartPos.x - 75) && canCurve) {
-						switch(currentDirection){
-						case "Front":
-							currentDirection = "Right";
-							cam.Direction = "Right";
-							break;
-						case "Left":
-							currentDirection = "Front";
-							cam.Direction = "Front";
-							break;
-						case "Right":
-							currentDirection = "Back";
-							cam.Direction = "Back";
-							break;
-						case "Back":
-							currentDirection = "Left";
-							cam.Direction = "Left";
-							break;
-						}
-						runDirection -= 90;  
-						lastRotateTime = Time.time;
-						arrowKeyPressed = true;
-						canCurve = false;
-					} else if (touch.position.x > (touchStartPos.x + 75) && canCurve){
-
-						switch(currentDirection){
-						case "Front":
-							currentDirection = "Left";
-							cam.Direction = "Left";
-							break;
-						case "Left":
-							currentDirection = "Back";
-							cam.Direction = "Back";
-							break;
-						case "Right":
-							currentDirection = "Front";
-							cam.Direction = "Front";
-							break;
-						case "Back":
-							currentDirection = "Right";
-							cam.Direction = "Right";
-							break;
-						}
-						runDirection += 90;
-						lastRotateTime = Time.time;
-						arrowKeyPressed = true;
-					}
-				}
-
-				if (touch.position.y > (touchStartPos.y + 130) && isFalling == false) {
-						Jump ();
-						isFalling = true;
-						arrowKeyPressed = true;
-
-				} else if (touch.position.y < (touchStartPos.y - 130) && isFalling == false) {
-					StartCoroutine ("DownMovement");
-					//NO NOW  
-					isSlide = true;
-					arrowKeyPressed = true;
-				}
-		}
+			break;
+		case SwipeControl.SWIPE_DIRECTION.SD_DOWN_LEFT:
+			if(canCurve){
+				RotateTo = "left";
+			}else{
+				StartCoroutine ("DownMovement");
+				//NO NOW  
+				arrowKeyPressed = true;		
+			}
+			break;
+		case SwipeControl.SWIPE_DIRECTION.SD_DOWN_RIGHT:
+			if(canCurve){
+				RotateTo = "right";
+			}else{
+				StartCoroutine ("DownMovement");
+				//NO NOW  
+				arrowKeyPressed = true;		
+			}
+			break;
+		case SwipeControl.SWIPE_DIRECTION.SD_UP_LEFT:
+			if(canCurve){
+				RotateTo = "left";
+			}else{
+			Jump ();
+			isFalling = true;
+			arrowKeyPressed = true;	
+			}
+			break;
+		case SwipeControl.SWIPE_DIRECTION.SD_UP_RIGHT:
+			if(canCurve){
+				RotateTo = "right";
+			}else{
+				Jump ();
+				isFalling = true;
+				arrowKeyPressed = true;	
+			}
+			break;
+		
 		}
 		#endregion
+	}
+	// Touching Android Screen process.
+	private void processTouchInput( )
+	{
+		
 		#region [Androoid moving Device]
-		if (Input.acceleration.x < -0.1f) {
+
+		if (Input.acceleration.x < -0.06f) {
 			
 			switch(currentDirection){
 			case "Front":
@@ -287,7 +299,7 @@ public class PlayerController : MonoBehaviour {
 				break;
 			}
 
-		} else if(Input.acceleration.x > 0.1f){
+		} else if(Input.acceleration.x > 0.06f){
 			
 			switch(currentDirection){
 			case "Front":
@@ -380,7 +392,6 @@ public class PlayerController : MonoBehaviour {
 			} else if (Input.GetKeyDown(KeyCode.DownArrow)) {
 				StartCoroutine ("DownMovement");
 				//NO NOW  
-				isSlide = true;
 				arrowKeyPressed = true;
 
 			}
@@ -490,10 +501,12 @@ public class PlayerController : MonoBehaviour {
 	IEnumerator DownMovement(){
 		//Todo esta aqui solo cambia por las variables del momento ;)
 		anim.SetBool ("Slide",true);
+		Camera.main.GetComponent<Animator> ().SetBool ("Slide",true);
+		isSlide = true;
 		yield return new WaitForSeconds (0.5f);
 		anim.SetBool ("Slide",false);
-		yield return new WaitForSeconds (0.5f);
 
+		Camera.main.GetComponent<Animator> ().SetBool ("Slide",false);
 		isSlide = false;
 	
 	}
@@ -525,19 +538,94 @@ public class PlayerController : MonoBehaviour {
 		if(collision.gameObject.tag == "Obstacle"){
 			Death ();
 		}
+
 	}
 
 
 	void OnTriggerExit(Collider other){
-		if(other.tag == "Curve"){
+		if(other.tag == "Curve" || other.tag =="PreCurve"){
 			canCurve = false;
+			canSwipe = true;
+
 		}
 	}
-	void OnTriggerEnter(Collider other) {
 
+	void OnTriggerEnter(Collider other) {
+		
 	
 		if(other.tag == "Curve"){
-			canCurve = true;
+			if(canCurve){
+				switch(RotateTo){
+				case "left":
+					if(canCurve){
+						canSwipe = false;
+
+						switch(currentDirection){
+						case "Front":
+							currentDirection = "Right";
+							cam.Direction = "Right";
+							break;
+						case "Left":
+							currentDirection = "Front";
+							cam.Direction = "Front";
+							break;
+						case "Right":
+							currentDirection = "Back";
+							cam.Direction = "Back";
+							break;
+						case "Back":
+							currentDirection = "Left";
+							cam.Direction = "Left";
+							break;
+						}
+						runDirection = runDirection - 90;  
+						lastRotateTime = Time.time;
+						arrowKeyPressed = true;
+						Debug.Log (runDirection);
+						canCurve = false;
+						RotateTo = "";
+					}
+
+					break;
+				case "right":
+					if (canCurve) {
+						canSwipe = false;
+
+						switch (currentDirection) {
+						case "Front":
+							currentDirection = "Left";
+							cam.Direction = "Left";
+							break;
+						case "Left":
+							currentDirection = "Back";
+							cam.Direction = "Back";
+							break;
+						case "Right":
+							currentDirection = "Front";
+							cam.Direction = "Front";
+							break;
+						case "Back":
+							currentDirection = "Right";
+							cam.Direction = "Right";
+							break;
+						}
+						runDirection = runDirection + 90;
+						lastRotateTime = Time.time;
+						arrowKeyPressed = true;
+						RotateTo = "";
+						canSwipe = false;
+						Debug.Log (runDirection);		
+					}
+					break;
+				}
+			}
+		}
+
+		if(other.tag == "PreCurve"){
+			if(canSwipe){
+				canCurve = true;
+
+			}
 		}
 		switch (other.tag) {
 		case "LeftDirection":
@@ -560,6 +648,7 @@ public class PlayerController : MonoBehaviour {
 
 			break;
 		case "MagnetItem":
+			Debug.Log ("Got it");
 			activeMagnet ();
 			Destroy (other.gameObject);
 			break;
@@ -586,6 +675,8 @@ public class PlayerController : MonoBehaviour {
 		if(!isdead){
 			canmove = false;
 			anim.SetBool ("Dead",true);
+			Camera.main.GetComponent<Animator> ().SetBool ("Dead",true);
+
 			InfoCCG.infoccg.CompareData (Score,(int)MetersFromStart);
 			Manager.mng.Gameover ();
 		}
